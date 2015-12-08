@@ -1,0 +1,13 @@
+   X should parse Safari 6 error
+     Expected 3 to be 4. (1)
+     Expected undefined to equal Object({ url: '[native code]', func: '?', args: [  ], line: null, column: null }). (2)
+   X should parse Safari 7 error
+     Expected 2 to be 3. (1)
+     Expected Object({ url: 'http://path/to/file.js', func: 'foo', args: [  ], line: 52, column: 15, context: null }) to equal Object({ url: 'http://path/to/file.js', func: '?', args: [  ], line: 48, column: 22, context: null }). (2)
+     Expected Object({ url: 'http://path/to/file.js', func: 'bar', args: [  ], line: 108, column: 107, context: null }) to equal Object({ url: 'http://path/to/file.js', func: 'foo', args: [  ], line: 52, column: 15, context: null }). (3)
+     Expected undefined to equal Object({ url: 'http://path/to/file.js', func: 'bar', args: [  ], line: 108, column: 107, context: null }). (4)
+   X should parse Safari 8 error
+     Expected 2 to be 3. (1)
+     Expected Object({ url: 'http://path/to/file.js', func: 'foo', args: [  ], line: 52, column: 15, context: null }) to equal Object({ url: 'http://path/to/file.js', func: '?', args: [  ], line: 47, column: 22, context: null }). (2)
+     Expected Object({ url: 'http://path/to/file.js', func: 'bar', args: [  ], line: 108, column: 23, context: null }) to equal Object({ url: 'http://path/to/file.js', func: 'foo', args: [  ], line: 52, column: 15, context: null }). (3)
+     Expected undefined to equal Object({ url: 'http://path/to/file.js', func: 'bar', args: [  ], line: 108, column: 23, context: null }). (4)

@@ -1,0 +1,185 @@
+==> default: Running provisioner: shell...
+    default: Running: shell/VagrantAction.ps1 as c:\tmp\vagrant-shell.ps1
+==> default: Chocolatey is running on Windows v 6.3.9600.0
+==> default: Attempting to delete file "C:/ProgramData/chocolatey/choco.exe.old".
+==> default: 
+==> default: Attempting to delete file "C:\ProgramData\chocolatey\choco.exe.old".
+==> default: Command line: "C:\ProgramData\chocolatey\choco.exe" uninstall shareaza --version 2.7.8.0 -dvy
+==> default: Received arguments: uninstall shareaza --version 2.7.8.0 -dvy
+==> default: NOTE: Hiding sensitive configuration data! Please double and triple 
+==> default:  check to be sure no sensitive data is shown, especially if copying 
+==> default:  output to a gist for review.
+==> default: Configuration: CommandName='uninstall'|
+==> default: CacheLocation='C:\Users\ADMINI~1\AppData\Local\Temp'|
+==> default: ContainsLegacyPackageInstalls='True'|
+==> default: CommandExecutionTimeoutSeconds='2700'|
+==> default: Sources='https://chocolatey.org/api/v2/'|Debug='True'|Verbose='True'|
+==> default: Force='False'|Noop='False'|HelpRequested='False'|RegularOutput='True'|
+==> default: QuietOutput='False'|PromptForConfirmation='False'|AcceptLicense='True'|
+==> default: AllowUnofficialBuild='False'|Input='shareaza'|Version='2.7.8.0'|
+==> default: AllVersions='False'|SkipPackageInstallProvider='False'|
+==> default: PackageNames='shareaza'|Prerelease='False'|ForceX86='False'|
+==> default: OverrideArguments='False'|NotSilent='False'|IgnoreDependencies='False'|
+==> default: AllowMultipleVersions='False'|AllowDowngrade='False'|
+==> default: ForceDependencies='False'|Information.PlatformType='Windows'|
+==> default: Information.PlatformVersion='6.3.9600.0'|
+==> default: Information.PlatformName='Windows Server 2012 R2'|
+==> default: Information.ChocolateyVersion='0.9.9.11'|
+==> default: Information.ChocolateyProductVersion='0.9.9.11'|
+==> default: Information.FullName='choco, Version=0.9.9.11, Culture=neutral, PublicKeyToken=79d02ea9cad655eb'|
+==> default: 
+==> default: Information.Is64Bit='True'|Information.IsInteractive='False'|
+==> default: Information.IsUserAdministrator='True'|
+==> default: Information.IsProcessElevated='True'|Features.AutoUninstaller='True'|
+==> default: Features.CheckSumFiles='True'|Features.FailOnAutoUninstaller='False'|
+==> default: ListCommand.LocalOnly='False'|
+==> default: ListCommand.IncludeRegistryPrograms='False'|
+==> default: UpgradeCommand.FailOnUnfound='False'|
+==> default: UpgradeCommand.FailOnNotInstalled='False'|
+==> default: UpgradeCommand.NotifyOnlyAvailableUpgrades='False'|
+==> default: NewCommand.AutomaticPackage='False'|SourceCommand.Command='unknown'|
+==> default: SourceCommand.Priority='0'|FeatureCommand.Command='unknown'|
+==> default: ConfigCommand.Command='unknown'|PushCommand.TimeoutInSeconds='0'|
+==> default: PinCommand.Command='unknown'|
+==> default: _ Chocolatey:ChocolateyUninstallCommand - Normal Run Mode _
+==> default: Uninstalling the following packages:
+==> default: shareaza
+==> default: Attempting to create directory "C:\ProgramData\chocolatey\lib-bkp".
+==> default: 
+==> default: Backing up existing shareaza prior to upgrade.
+==> default: Moving 'C:\ProgramData\chocolatey\lib\shareaza'
+==> default:  to 'C:\ProgramData\chocolatey\lib-bkp\shareaza'
+==> default: Attempting to create directory "C:\ProgramData\chocolatey\lib\shareaza".
+==> default: 
+==> default: Attempting to copy "C:\ProgramData\chocolatey\lib-bkp\shareaza\shareaza.nupkg"
+==> default:  to "C:\ProgramData\chocolatey\lib\shareaza\shareaza.nupkg".
+==> default: Attempting to create directory "C:\ProgramData\chocolatey\lib\shareaza\tools".
+==> default: Attempting to copy "C:\ProgramData\chocolatey\lib-bkp\shareaza\tools\chocolateyInstall.ps1"
+==> default:  to "C:\ProgramData\chocolatey\lib\shareaza\tools\chocolateyInstall.ps1".
+==> default: Attempting to copy "C:\ProgramData\chocolatey\lib-bkp\shareaza\tools\chocolateyUninstall.ps1"
+==> default:  to "C:\ProgramData\chocolatey\lib\shareaza\tools\chocolateyUninstall.ps1".
+==> default: Capturing package files in 'C:\ProgramData\chocolatey\lib\shareaza'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\shareaza\shareaza.nupkg'
+==> default: 
+==> default:   with checksum '926020A3903D35E2A1004D28EBBF6E68'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\shareaza\tools\chocolateyInstall.ps1'
+==> default:   with checksum 'F27B39059EE0B520E8AA304DA6355FA5'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\shareaza\tools\chocolateyUninstall.ps1'
+==> default:   with checksum '49683E55829916B7A5F0F8340E70FF07'
+==> default: [NuGet] Uninstalling 'shareaza 2.7.8.0'.
+==> default: 
+==> default: shareaza v2.7.8.0
+==> default: Contents of 'C:\ProgramData\chocolatey\lib\shareaza\tools\chocolateyUninstall.ps1':
+==> default: $packageName = 'shareaza'
+==> default: $installerType = 'exe'
+==> default: $silentArgs = '/VERYSILENT /SUPPRESSMSGBOXES /NORESTART /SP-'
+==> default: $validExitCodes = @(0)
+==> default: try {
+==> default:   Get-ItemProperty -Path @( 'HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*',
+==> default:                             'HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*',
+==> default:                             'HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*' ) `
+==> default:                    -ErrorAction:SilentlyContinue `
+==> default:   | Where-Object   { $_.DisplayName -like "$packageName*" } `
+==> default:   | ForEach-Object { Uninstall-ChocolateyPackage -PackageName "$packageName" `
+==> default:                                                  -FileType "$installerType" `
+==> default:                                                  -SilentArgs "$($silentArgs)" `
+==> default:                                                  -File "$($_.UninstallString)" `
+==> default:                                                  -ValidExitCodes $validExitCodes }
+==> default: } catch {
+==> default:   throw $_.Exception
+==> default: }
+==> default: Calling command ['"C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -NoLogo -ExecutionPolicy Bypass -Command "[System.Threading.Thread]::CurrentThread.CurrentCulture = '';[System.Threading.Thread]::CurrentThread.CurrentUICulture = ''; 
+==> default: & import-module -name 'C:\ProgramData\chocolatey\helpers\chocolateyInstaller.psm1'; & 'C:\ProgramData\chocolatey\helpers\chocolateyScriptRunner.ps1' -packageScript 'C:\ProgramData\chocolatey\lib\shareaza\tools\chocolateyUninstall.ps1' -installArguments '' -packageParameters ''"']
+==> default:  DEBUG: Posh version is 4.0
+==> default:  DEBUG: Loading community extensions
+==> default:  VERBOSE: Exporting function 'Get-BinRoot'.
+==> default:  VERBOSE: Exporting function 'Get-ChecksumValid'.
+==> default:  VERBOSE: Exporting function 'Get-ChocolateyUnzip'.
+==> default:  VERBOSE: Exporting function 'Get-ChocolateyWebFile'.
+==> default:  VERBOSE: Exporting function 'Get-EnvironmentVariable'.
+==> default:  VERBOSE: Exporting function 'Get-EnvironmentVariableNames'.
+==> default:  VERBOSE: Exporting function 'Get-FtpFile'.
+==> default:  VERBOSE: Exporting function 'Get-ProcessorBits'.
+==> default:  VERBOSE: Exporting function 'Get-UACEnabled'.
+==> default:  VERBOSE: Exporting function 'Get-VirusCheckValid'.
+==> default:  VERBOSE: Exporting function 'Get-WebFile'.
+==> default:  VERBOSE: Exporting function 'Get-WebHeaders'.
+==> default:  VERBOSE: Exporting function 'Install-BinFile'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyDesktopLink'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyEnvironmentVariable'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyExplorerMenuItem'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyFileAssociation'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyInstallPackage'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyPackage'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyPath'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyPinnedTaskBarItem'.
+==> default: 
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyPowershellCommand'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyShortcut'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyVsixPackage'.
+==> default:  VERBOSE: Exporting function 'Install-Vsix'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyZipPackage'.
+==> default:  VERBOSE: Exporting function 'Set-EnvironmentVariable'.
+==> default:  VERBOSE: Exporting function 'Start-ChocolateyProcessAsAdmin'.
+==> default:  VERBOSE: Exporting function 'Test-ProcessAdminRights'.
+==> default:  VERBOSE: Exporting function 'Uninstall-BinFile'.
+==> default: 
+==> default:  VERBOSE: Exporting function 'Uninstall-ChocolateyPackage'.
+==> default:  VERBOSE: Exporting function 'UnInstall-ChocolateyZipPackage'.
+==> default:  VERBOSE: Exporting function 'Update-SessionEnvironment'.
+==> default: 
+==> default:  VERBOSE: Exporting function 'Write-ChocolateyFailure'.
+==> default:  VERBOSE: Exporting function 'Write-ChocolateySuccess'.
+==> default:  VERBOSE: Exporting function 'Write-FileUpdateLog'.
+==> default:  VERBOSE: Exporting alias 'Generate-BinFile'.
+==> default:  VERBOSE: Exporting alias 'Add-BinFile'.
+==> default:  VERBOSE: Exporting alias 'Remove-BinFile'.
+==> default:  DEBUG: Running 'Uninstall-ChocolateyPackage' for shareaza with fileType:'exe', 
+==> default:  silentArgs: '/VERYSILENT /SUPPRESSMSGBOXES /NORESTART /SP-', file: '"C:\Program
+==> default:   Files\Shareaza\Uninstall\unins000.exe"'
+==> default:  Uninstalling shareaza...
+==> default: 
+==> default:  DEBUG: Running 'Start-ChocolateyProcessAsAdmin' with exeToRun:'"C:\Program 
+==> default:  Files\Shareaza\Uninstall\unins000.exe"', statements: '/VERYSILENT 
+==> default:  /SUPPRESSMSGBOXES /NORESTART /SP- ' 
+==> default:  DEBUG: Elevating Permissions and running "C:\Program 
+==> default:  Files\Shareaza\Uninstall\unins000.exe" /VERYSILENT /SUPPRESSMSGBOXES /NORESTART
+==> default:   /SP- . This may take a while, depending on the statements.
+==> default:  DEBUG: Finishing 'Start-ChocolateyProcessAsAdmin'
+==> default: 
+==> default:  shareaza has been uninstalled.
+==> default: Command ['"C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -NoLogo -ExecutionPolicy Bypass -Command "[System.Threading.Thread]::CurrentThread.CurrentCulture = '';[System.Threading.Thread]::CurrentThread.CurrentUICulture = ''; & import
+==> default: -module -name 'C:\ProgramData\chocolatey\helpers\chocolateyInstaller.psm1'; & 'C:\ProgramData\chocolatey\helpers\chocolateyScriptRunner.ps1' -packageScript 'C:\ProgramData\chocolatey\lib\shareaza\tools\chocolateyUninstall.ps1' -installArguments '' -packageParameters ''"'] exited with '0'
+==> default:  Running auto uninstaller...
+==> default: Sleeping for 2 seconds to allow Windows to finish cleaning up.
+==> default:  Preparing uninstall key '"C:\Program Files\Shareaza\Uninstall\unins000.exe" /SILENT'
+==> default: 
+==> default:  Skipping auto uninstaller - The application appears to have been uninstalled already by other means.
+==> default:  Searched for install path 'C:\Program Files\Shareaza\' - found? False
+==> default:  Searched for registry key 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Shareaza_is1' value 'InstallLocation' - found? False
+==> default:  Preparing uninstall key '"C:\ProgramData\Package Cache\{7f51bdb9-ee21-49ee-94d6-90afc321780e}\vcredist_x64.exe" /uninstall /quiet'
+==> default:  Uninstaller path is 'C:\ProgramData\Package Cache\{7f51bdb9-ee21-49ee-94d6-90afc321780e}\vcredist_x64.exe'
+==> default:  Installer type is 'CustomInstaller'
+==> default:  Setting up uninstall logging directory at C:\Users\Administrator\AppData\Local\Temp\chocolatey\shareaza\2.7.8.0
+==> default:  Args are ' /uninstall /quiet'
+==> default: Calling command ['"C:\ProgramData\Package Cache\{7f51bdb9-ee21-49ee-94d6-90afc321780e}\vcredist_x64.exe" /uninstall /quiet']
+==> default: Command ['"C:\ProgramData\Package Cache\{7f51bdb9-ee21-49ee-94d6-90afc321780e}\vcredist_x64.exe" /uninstall /quiet'] exited with '0'
+==> default:  Auto uninstaller has successfully uninstalled shareaza or detected previous uninstall.
+==> default: Calling command ['"shutdown" /a']
+==> default: Command ['"shutdown" /a'] exited with '1116'
+==> default: Attempting to delete directory "C:\ProgramData\chocolatey\.chocolatey\shareaza.2.7.8.0".
+==> default: Attempting to delete directory "C:\ProgramData\chocolatey\lib-bkp\shareaza".
+==> default: [NuGet] Removed file 'chocolateyInstall.ps1' to folder 'C:\ProgramData\chocolatey\lib\shareaza\tools'.
+==> default: [NuGet] Removed file 'chocolateyUninstall.ps1' to folder 'C:\ProgramData\chocolatey\lib\shareaza\tools'.
+==> default: [NuGet] Removed folder 'C:\ProgramData\chocolatey\lib\shareaza\tools'.
+==> default: 
+==> default: [NuGet] Removed file 'shareaza.nupkg' to folder 'C:\ProgramData\chocolatey\lib\shareaza'.
+==> default: [NuGet] Removed folder 'C:\ProgramData\chocolatey\lib\shareaza'.
+==> default: [NuGet] Successfully uninstalled 'shareaza 2.7.8.0'.
+==> default:  shareaza has been successfully uninstalled.
+==> default: 
+==> default: Attempting to delete file "C:\ProgramData\chocolatey\lib\shareaza\shareaza.nupkg".
+==> default: 
+==> default: Chocolatey uninstalled 1/1 packages. 0 packages failed.
+==> default:  See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).
+==> default: Exiting with 0

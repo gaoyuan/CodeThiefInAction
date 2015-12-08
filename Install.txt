@@ -1,0 +1,518 @@
+==> default: Running provisioner: shell...
+    default: Running: shell/VagrantAction.ps1 as c:\tmp\vagrant-shell.ps1
+==> default: Chocolatey is running on Windows v 6.3.9600.0
+==> default: Attempting to delete file "C:/ProgramData/chocolatey/choco.exe.old".
+==> default: Attempting to delete file "C:\ProgramData\chocolatey\choco.exe.old".
+==> default: Command line: "C:\ProgramData\chocolatey\choco.exe" install shareaza --version 2.7.8.0 -fdvy
+==> default: 
+==> default: Received arguments: install shareaza --version 2.7.8.0 -fdvy
+==> default: NOTE: Hiding sensitive configuration data! Please double and triple 
+==> default:  check to be sure no sensitive data is shown, especially if copying 
+==> default:  output to a gist for review.
+==> default: Configuration: CommandName='install'|
+==> default: CacheLocation='C:\Users\ADMINI~1\AppData\Local\Temp'|
+==> default: ContainsLegacyPackageInstalls='True'|
+==> default: CommandExecutionTimeoutSeconds='2700'|
+==> default: Sources='https://chocolatey.org/api/v2/'|Debug='True'|Verbose='True'|
+==> default: Force='True'|Noop='False'|HelpRequested='False'|RegularOutput='True'|
+==> default: QuietOutput='False'|PromptForConfirmation='False'|AcceptLicense='True'|
+==> default: AllowUnofficialBuild='False'|Input='shareaza'|Version='2.7.8.0'|
+==> default: AllVersions='False'|SkipPackageInstallProvider='False'|
+==> default: PackageNames='shareaza'|Prerelease='False'|ForceX86='False'|
+==> default: OverrideArguments='False'|NotSilent='False'|IgnoreDependencies='False'|
+==> default: AllowMultipleVersions='False'|AllowDowngrade='False'|
+==> default: ForceDependencies='False'|Information.PlatformType='Windows'|
+==> default: Information.PlatformVersion='6.3.9600.0'|
+==> default: Information.PlatformName='Windows Server 2012 R2'|
+==> default: Information.ChocolateyVersion='0.9.9.11'|
+==> default: Information.ChocolateyProductVersion='0.9.9.11'|
+==> default: Information.FullName='choco, Version=0.9.9.11, Culture=neutral, PublicKeyToken=79d02ea9cad655eb'|
+==> default: 
+==> default: Information.Is64Bit='True'|Information.IsInteractive='False'|
+==> default: Information.IsUserAdministrator='True'|
+==> default: Information.IsProcessElevated='True'|Features.AutoUninstaller='True'|
+==> default: Features.CheckSumFiles='True'|Features.FailOnAutoUninstaller='False'|
+==> default: ListCommand.LocalOnly='False'|
+==> default: ListCommand.IncludeRegistryPrograms='False'|
+==> default: UpgradeCommand.FailOnUnfound='False'|
+==> default: UpgradeCommand.FailOnNotInstalled='False'|
+==> default: UpgradeCommand.NotifyOnlyAvailableUpgrades='False'|
+==> default: NewCommand.AutomaticPackage='False'|SourceCommand.Command='unknown'|
+==> default: SourceCommand.Priority='0'|FeatureCommand.Command='unknown'|
+==> default: ConfigCommand.Command='unknown'|PushCommand.TimeoutInSeconds='0'|
+==> default: PinCommand.Command='unknown'|
+==> default: _ Chocolatey:ChocolateyInstallCommand - Normal Run Mode _
+==> default: Installing the following packages:
+==> default: shareaza
+==> default: By installing you accept licenses for the packages.
+==> default: [NuGet] Attempting to resolve dependency 'vcredist2013'.
+==> default: [NuGet] Installing 'vcredist2013 12.0.30501.20150616'.
+==> default: 
+==> default: [NuGet] Added file 'chocolateyInstall.ps1' to folder 'vcredist2013\tools'.
+==> default: [NuGet] Added file 'chocolateyUninstall.ps1' to folder 'vcredist2013\tools'.
+==> default: [NuGet] Added file 'vcredist2013.nupkg' to folder 'vcredist2013'.
+==> default: [NuGet] Successfully installed 'vcredist2013 12.0.30501.20150616'.
+==> default: 
+==> default: vcredist2013 v12.0.30501.20150616 (forced)
+==> default: Contents of 'C:\ProgramData\chocolatey\lib\vcredist2013\tools\chocolateyInstall.ps1':
+==> default: $packageName = 'vcredist2013'
+==> default: $installerType = 'exe'
+==> default: $url = 'http://download.microsoft.com/download/2/E/6/2E61CFA4-993B-4DD4-91DA-3737CD5CD6E3/vcredist_x86.exe'
+==> default: $checksum = 'df7f0a73bfa077e483e51bfb97f5e2eceedfb6a3'
+==> default: $checksumType = 'sha1'
+==> default: $url64 = 'http://download.microsoft.com/download/2/E/6/2E61CFA4-993B-4DD4-91DA-3737CD5CD6E3/vcredist_x64.exe'
+==> default: $checksum64 = '8bf41ba9eef02d30635a10433817dbb6886da5a2'
+==> default: $checksumType64 = 'sha1'
+==> default: $silentArgs = '/Q'
+==> default: $validExitCodes = @(0,3010)  # http://msdn.microsoft.com/en-us/library/aa368542(VS.85).aspx
+==> default: 
+==> default: Install-ChocolateyPackage -PackageName "$packageName" `
+==> default:                           -FileType "$installerType" `
+==> default:                           -Url "$url" `
+==> default:                           -Url64bit "$url64" `
+==> default:                           -SilentArgs "$silentArgs" `
+==> default:                           -ValidExitCodes $validExitCodes `
+==> default:                           -Checksum "$checksum" `
+==> default:                           -ChecksumType "$checksumType" `
+==> default:                           -Checksum64 "$checksum64" `
+==> default:                           -ChecksumType64 "$checksumType64"
+==> default: 
+==> default: if (Get-ProcessorBits 64) {
+==> default:   Install-ChocolateyPackage -PackageName "$packageName" `
+==> default:                             -FileType "$installerType" `
+==> default:                             -Url "$url" `
+==> default:                             -SilentArgs "$silentArgs" `
+==> default:                             -ValidExitCodes $validExitCodes `
+==> default:                             -Checksum "$checksum" `
+==> default:                             -ChecksumType "$checksumType"
+==> default: }
+==> default: Calling command ['"C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -NoLogo -ExecutionPolicy Bypass -Command "[System.Threading.Thread]::CurrentThread.CurrentCulture = '';[System.Threading.Thread]::CurrentThread.CurrentUICulture = ''; & import-module -name 'C:\ProgramData\chocolatey\helpers\chocolateyInstaller.psm1'; & 'C:\ProgramData\chocolatey\helpers\chocolateyScriptRunner.ps1' -packageScript 'C:\ProgramData\chocolatey\lib\vcredist2013\tools\chocolateyInstall.ps1' -installArguments '' -packageParameters ''"']
+==> default:  DEBUG: Posh version is 4.0
+==> default: 
+==> default:  VERBOSE: Exporting function 'Get-BinRoot'.
+==> default:  VERBOSE: Exporting function 'Get-ChecksumValid'.
+==> default:  VERBOSE: Exporting function 'Get-ChocolateyUnzip'.
+==> default:  VERBOSE: Exporting function 'Get-ChocolateyWebFile'.
+==> default:  VERBOSE: Exporting function 'Get-EnvironmentVariable'.
+==> default:  VERBOSE: Exporting function 'Get-EnvironmentVariableNames'.
+==> default:  VERBOSE: Exporting function 'Get-FtpFile'.
+==> default:  VERBOSE: Exporting function 'Get-ProcessorBits'.
+==> default:  VERBOSE: Exporting function 'Get-UACEnabled'.
+==> default:  VERBOSE: Exporting function 'Get-VirusCheckValid'.
+==> default:  VERBOSE: Exporting function 'Get-WebFile'.
+==> default:  VERBOSE: Exporting function 'Get-WebHeaders'.
+==> default:  VERBOSE: Exporting function 'Install-BinFile'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyDesktopLink'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyEnvironmentVariable'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyExplorerMenuItem'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyFileAssociation'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyInstallPackage'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyPackage'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyPath'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyPinnedTaskBarItem'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyPowershellCommand'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyShortcut'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyVsixPackage'.
+==> default:  VERBOSE: Exporting function 'Install-Vsix'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyZipPackage'.
+==> default:  VERBOSE: Exporting function 'Set-EnvironmentVariable'.
+==> default:  VERBOSE: Exporting function 'Start-ChocolateyProcessAsAdmin'.
+==> default:  VERBOSE: Exporting function 'Test-ProcessAdminRights'.
+==> default:  VERBOSE: Exporting function 'Uninstall-BinFile'.
+==> default:  VERBOSE: Exporting function 'Uninstall-ChocolateyPackage'.
+==> default:  VERBOSE: Exporting function 'UnInstall-ChocolateyZipPackage'.
+==> default:  VERBOSE: Exporting function 'Update-SessionEnvironment'.
+==> default:  VERBOSE: Exporting function 'Write-ChocolateyFailure'.
+==> default:  VERBOSE: Exporting function 'Write-ChocolateySuccess'.
+==> default:  VERBOSE: Exporting function 'Write-FileUpdateLog'.
+==> default:  VERBOSE: Exporting alias 'Generate-BinFile'.
+==> default:  VERBOSE: Exporting alias 'Add-BinFile'.
+==> default:  VERBOSE: Exporting alias 'Remove-BinFile'.
+==> default:  DEBUG: Running 'Install-ChocolateyPackage' for vcredist2013 with 
+==> default: 
+==> default:  url:'http://download.microsoft.com/download/2/E/6/2E61CFA4-993B-4DD4-91DA-3737C
+==> default:  D5CD6E3/vcredist_x86.exe', args: '/Q', fileType: 'exe', url64bit: 
+==> default:  'http://download.microsoft.com/download/2/E/6/2E61CFA4-993B-4DD4-91DA-3737CD5CD
+==> default:  6E3/vcredist_x64.exe', checksum: 'df7f0a73bfa077e483e51bfb97f5e2eceedfb6a3', 
+==> default: 
+==> default:  checksumType: 'sha1', checksum64: '8bf41ba9eef02d30635a10433817dbb6886da5a2', 
+==> default:  checksumType64: 'sha1', validExitCodes: '0 3010' 
+==> default:  DEBUG: Running 'Get-ChocolateyWebFile' for vcredist2013 with 
+==> default: 
+==> default:  url:'http://download.microsoft.com/download/2/E/6/2E61CFA4-993B-4DD4-91DA-3737C
+==> default:  D5CD6E3/vcredist_x86.exe', 
+==> default:  fileFullPath:'C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\vcredist2013\12.0
+==> default:  .30501.20150616\vcredist2013Install.exe', 
+==> default:  url64bit:'http://download.microsoft.com/download/2/E/6/2E61CFA4-993B-4DD4-91DA-
+==> default:  3737CD5CD6E3/vcredist_x64.exe', checksum: 
+==> default:  'df7f0a73bfa077e483e51bfb97f5e2eceedfb6a3', checksumType: 'sha1', checksum64: 
+==> default:  '8bf41ba9eef02d30635a10433817dbb6886da5a2', checksumType64: 'sha1'
+==> default:  DEBUG: Running 'Get-ProcessorBits'
+==> default:  DEBUG: CPU is 64 bit
+==> default:  DEBUG: Setting url to 
+==> default:  'http://download.microsoft.com/download/2/E/6/2E61CFA4-993B-4DD4-91DA-3737CD5CD
+==> default: 
+==> default:  6E3/vcredist_x64.exe' and bitPackage to 64
+==> default:  DEBUG: Running 'Get-WebHeaders' with 
+==> default:  url:'http://download.microsoft.com/download/2/E/6/2E61CFA4-993B-4DD4-91DA-3737C
+==> default:  D5CD6E3/vcredist_x64.exe', userAgent: 'chocolatey command line'
+==> default:  DEBUG: Setting the UserAgent to 'chocolatey command line'
+==> default:  DEBUG: Request Headers:
+==> default:  DEBUG:   'Accept':'*/*'
+==> default:  DEBUG:   'User-Agent':'chocolatey command line'
+==> default:  DEBUG: Response Headers:
+==> default:  DEBUG:   'Content-Disposition':'attachment'
+==> default:  DEBUG:   'Connection':'keep-alive'
+==> default:  DEBUG:   'Accept-Ranges':'bytes'
+==> default:  DEBUG:   'Content-Length':'7194312'
+==> default:  DEBUG:   'Content-Type':'application/octet-stream'
+==> default:  DEBUG:   'Date':'Tue, 08 Dec 2015 22:18:20 GMT'
+==> default:  DEBUG:   'ETag':'"69d1ffcf4d65cf1:0"'
+==> default:  DEBUG:   'Last-Modified':'Thu, 01 May 2014 14:58:29 GMT'
+==> default:  DEBUG:   'Server':'Microsoft-IIS/8.5'
+==> default:  Downloading vcredist2013 64 bit
+==> default:    from 'http://download.microsoft.com/download/2/E/6/2E61CFA4-993B-4DD4-91DA-3737CD5CD6E3/vcredist_x64.exe'
+==> default:  DEBUG: Running 'Get-WebFile' for 
+==> default: 
+==> default:  C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\vcredist2013\12.0.30501.2015061
+==> default:  6\vcredist2013Install.exe with 
+==> default:  url:'http://download.microsoft.com/download/2/E/6/2E61CFA4-993B-4DD4-91DA-3737C
+==> default:  D5CD6E3/vcredist_x64.exe', userAgent: 'chocolatey command line' 
+==> default:  DEBUG: Setting the UserAgent to 'chocolatey command line'
+==> default:  DEBUG: Checking that 
+==> default: 
+==> default:  'C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\vcredist2013\12.0.30501.201506
+==> default:  16\vcredist2013Install.exe' is the size we expect it to be.
+==> default:  DEBUG: Verifying package provided checksum of 
+==> default:  '8bf41ba9eef02d30635a10433817dbb6886da5a2' for 
+==> default:  'C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\vcredist2013\12.0.30501.201506
+==> default:  16\vcredist2013Install.exe'.
+==> default:  DEBUG: Running 'Get-ChecksumValid' with 
+==> default:  file:'C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\vcredist2013\12.0.30501.2
+==> default:  0150616\vcredist2013Install.exe', checksum: 
+==> default:  '8bf41ba9eef02d30635a10433817dbb6886da5a2', checksumType: 'sha1'
+==> default:  DEBUG: checksum.exe found at 
+==> default:  'C:\ProgramData\chocolatey\helpers\..\tools\checksum.exe'
+==> default:  DEBUG: Executing command 
+==> default:  ['C:\ProgramData\chocolatey\helpers\..\tools\checksum.exe' 
+==> default:  -c="8bf41ba9eef02d30635a10433817dbb6886da5a2" -t="sha1" 
+==> default:  -f="C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\vcredist2013\12.0.30501.201
+==> default:  50616\vcredist2013Install.exe"]
+==> default:  Hashes match.
+==> default: 
+==> default:  DEBUG: Command ['C:\ProgramData\chocolatey\helpers\..\tools\checksum.exe' 
+==> default:  -c="8bf41ba9eef02d30635a10433817dbb6886da5a2" -t="sha1" 
+==> default:  -f="C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\vcredist2013\12.0.30501.201
+==> default:  50616\vcredist2013Install.exe"] exited with '0'.
+==> default:  DEBUG: Running 'Install-ChocolateyInstallPackage' for vcredist2013 with 
+==> default:  file:'C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\vcredist2013\12.0.30501.2
+==> default:  0150616\vcredist2013Install.exe', args: '/Q', fileType: 'exe', validExitCodes: 
+==> default:  '0 3010' 
+==> default:  Installing vcredist2013...
+==> default:  DEBUG: Running 'Start-ChocolateyProcessAsAdmin' with 
+==> default:  exeToRun:'C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\vcredist2013\12.0.305
+==> default:  01.20150616\vcredist2013Install.exe', statements: '/Q ' 
+==> default:  DEBUG: Elevating Permissions and running 
+==> default:  C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\vcredist2013\12.0.30501.2015061
+==> default:  6\vcredist2013Install.exe /Q . This may take a while, depending on the 
+==> default:  statements.
+==> default:  DEBUG: Finishing 'Start-ChocolateyProcessAsAdmin'
+==> default: 
+==> default:  vcredist2013 has been installed.
+==> default:  DEBUG: Running 'Get-ProcessorBits'
+==> default:  DEBUG: Running 'Install-ChocolateyPackage' for vcredist2013 with 
+==> default:  url:'http://download.microsoft.com/download/2/E/6/2E61CFA4-993B-4DD4-91DA-3737C
+==> default:  D5CD6E3/vcredist_x86.exe', args: '/Q', fileType: 'exe', url64bit: '', checksum:
+==> default:   'df7f0a73bfa077e483e51bfb97f5e2eceedfb6a3', checksumType: 'sha1', checksum64: 
+==> default:  '', checksumType64: '', validExitCodes: '0 3010' 
+==> default:  DEBUG: Running 'Get-ChocolateyWebFile' for vcredist2013 with 
+==> default:  url:'http://download.microsoft.com/download/2/E/6/2E61CFA4-993B-4DD4-91DA-3737C
+==> default:  D5CD6E3/vcredist_x86.exe', 
+==> default:  fileFullPath:'C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\vcredist2013\12.0
+==> default:  .30501.20150616\vcredist2013Install.exe', url64bit:'', checksum: 
+==> default:  'df7f0a73bfa077e483e51bfb97f5e2eceedfb6a3', checksumType: 'sha1', checksum64: 
+==> default:  '', checksumType64: ''
+==> default:  DEBUG: Running 'Get-ProcessorBits'
+==> default:  DEBUG: CPU is 64 bit
+==> default:  DEBUG: Running 'Get-WebHeaders' with 
+==> default:  url:'http://download.microsoft.com/download/2/E/6/2E61CFA4-993B-4DD4-91DA-3737C
+==> default:  D5CD6E3/vcredist_x86.exe', userAgent: 'chocolatey command line'
+==> default:  DEBUG: Setting the UserAgent to 'chocolatey command line'
+==> default:  DEBUG: Request Headers:
+==> default:  DEBUG:   'Accept':'*/*'
+==> default:  DEBUG:   'User-Agent':'chocolatey command line'
+==> default:  DEBUG: Response Headers:
+==> default: 
+==> default:  DEBUG:   'Content-Disposition':'attachment'
+==> default:  DEBUG:   'Connection':'keep-alive'
+==> default:  DEBUG:   'Accept-Ranges':'bytes'
+==> default:  DEBUG:   'Content-Length':'6503984'
+==> default:  DEBUG:   'Content-Type':'application/octet-stream'
+==> default:  DEBUG:   'Date':'Tue, 08 Dec 2015 22:18:39 GMT'
+==> default:  DEBUG:   'ETag':'"5abee14f65cf1:0"'
+==> default: 
+==> default:  DEBUG:   'Last-Modified':'Thu, 01 May 2014 15:13:16 GMT'
+==> default:  DEBUG:   'Server':'Microsoft-IIS/8.5'
+==> default:  Downloading vcredist2013 32 bit
+==> default:    from 'http://download.microsoft.com/download/2/E/6/2E61CFA4-993B-4DD4-91DA-3737CD5CD6E3/vcredist_x86.exe'
+==> default:  DEBUG: Running 'Get-WebFile' for 
+==> default:  C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\vcredist2013\12.0.30501.2015061
+==> default:  6\vcredist2013Install.exe with 
+==> default:  url:'http://download.microsoft.com/download/2/E/6/2E61CFA4-993B-4DD4-91DA-3737C
+==> default:  D5CD6E3/vcredist_x86.exe', userAgent: 'chocolatey command line' 
+==> default:  DEBUG: Setting the UserAgent to 'chocolatey command line'
+==> default:  DEBUG: Checking that 
+==> default: 
+==> default:  'C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\vcredist2013\12.0.30501.201506
+==> default:  16\vcredist2013Install.exe' is the size we expect it to be.
+==> default:  DEBUG: Verifying package provided checksum of 
+==> default:  'df7f0a73bfa077e483e51bfb97f5e2eceedfb6a3' for 
+==> default:  'C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\vcredist2013\12.0.30501.201506
+==> default:  16\vcredist2013Install.exe'.
+==> default:  DEBUG: Running 'Get-ChecksumValid' with 
+==> default:  file:'C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\vcredist2013\12.0.30501.2
+==> default:  0150616\vcredist2013Install.exe', checksum: 
+==> default:  'df7f0a73bfa077e483e51bfb97f5e2eceedfb6a3', checksumType: 'sha1'
+==> default:  DEBUG: checksum.exe found at 
+==> default:  'C:\ProgramData\chocolatey\helpers\..\tools\checksum.exe'
+==> default:  DEBUG: Executing command 
+==> default:  ['C:\ProgramData\chocolatey\helpers\..\tools\checksum.exe' 
+==> default:  -c="df7f0a73bfa077e483e51bfb97f5e2eceedfb6a3" -t="sha1" 
+==> default:  -f="C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\vcredist2013\12.0.30501.201
+==> default:  50616\vcredist2013Install.exe"]
+==> default:  Hashes match.
+==> default: 
+==> default:  DEBUG: Command ['C:\ProgramData\chocolatey\helpers\..\tools\checksum.exe' 
+==> default:  -c="df7f0a73bfa077e483e51bfb97f5e2eceedfb6a3" -t="sha1" 
+==> default:  -f="C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\vcredist2013\12.0.30501.201
+==> default:  50616\vcredist2013Install.exe"] exited with '0'.
+==> default:  DEBUG: Running 'Install-ChocolateyInstallPackage' for vcredist2013 with 
+==> default: 
+==> default:  file:'C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\vcredist2013\12.0.30501.2
+==> default:  0150616\vcredist2013Install.exe', args: '/Q', fileType: 'exe', validExitCodes: 
+==> default:  '0 3010' 
+==> default:  Installing vcredist2013...
+==> default:  DEBUG: Running 'Start-ChocolateyProcessAsAdmin' with 
+==> default:  exeToRun:'C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\vcredist2013\12.0.305
+==> default:  01.20150616\vcredist2013Install.exe', statements: '/Q ' 
+==> default:  DEBUG: Elevating Permissions and running 
+==> default:  C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\vcredist2013\12.0.30501.2015061
+==> default:  6\vcredist2013Install.exe /Q . This may take a while, depending on the 
+==> default:  statements.
+==> default:  DEBUG: Finishing 'Start-ChocolateyProcessAsAdmin'
+==> default: 
+==> default:  vcredist2013 has been installed.
+==> default: Command ['"C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -NoLogo -ExecutionPolicy Bypass -Command "[System.Threading.Thread]::CurrentThread.CurrentCulture = '';[System.Threading.Thread]::CurrentThread.CurrentUICulture = ''; & import-module -name 'C:\ProgramData\chocolatey\helpers\chocolateyInstaller.psm1'; & 'C:\ProgramData\chocolatey\helpers\chocolateyScriptRunner.ps1' -packageScript 'C:\ProgramData\chocolatey\lib\vcredist2013\tools\chocolateyInstall.ps1' -installArguments '' -packageParameters ''"'] exited with '0'
+==> default: Calling command ['"shutdown" /a']
+==> default: Command ['"shutdown" /a'] exited with '1116'
+==> default: Capturing package files in 'C:\ProgramData\chocolatey\lib\vcredist2013'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\vcredist2013\vcredist2013.nupkg'
+==> default:   with checksum 'FD0A8FF162E0D1CC52D6B9091D5EE686'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\vcredist2013\tools\chocolateyInstall.ps1'
+==> default:   with checksum 'D236554935596C3C335059402A89A7D8'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\vcredist2013\tools\chocolateyUninstall.ps1'
+==> default:   with checksum '56A415DA5FFCDD2DEA727F7FB0A7F61B'
+==> default: Attempting to create directory "C:\ProgramData\chocolatey\extensions".
+==> default: 
+==> default: Adding 'Hidden' attribute(s) to 'C:\ProgramData\chocolatey\.chocolatey'.
+==> default: Attempting to create directory "C:\ProgramData\chocolatey\.chocolatey\vcredist2013.12.0.30501.20150616".
+==> default: Attempting to copy "C:\ProgramData\chocolatey\.chocolatey\vcredist2013.12.0.30501.20150616\.registry.update"
+==> default:  to "C:\ProgramData\chocolatey\.chocolatey\vcredist2013.12.0.30501.20150616\.registry".
+==> default: Attempting to delete file "C:\ProgramData\chocolatey\.chocolatey\vcredist2013.12.0.30501.20150616\.registry.update".
+==> default: Attempting to copy "C:\ProgramData\chocolatey\.chocolatey\vcredist2013.12.0.30501.20150616\.files.update"
+==> default:  to "C:\ProgramData\chocolatey\.chocolatey\vcredist2013.12.0.30501.20150616\.files".
+==> default: Attempting to delete file "C:\ProgramData\chocolatey\.chocolatey\vcredist2013.12.0.30501.20150616\.files.update".
+==> default: 
+==> default: Attempting to delete file "C:\ProgramData\chocolatey\.chocolatey\vcredist2013.12.0.30501.20150616\.sxs".
+==> default: Attempting to delete file "C:\ProgramData\chocolatey\.chocolatey\vcredist2013.12.0.30501.20150616\.pin".
+==> default:  The install of vcredist2013 was successful.
+==> default: [NuGet] Installing 'shareaza 2.7.8.0'.
+==> default: [NuGet] Added file 'chocolateyInstall.ps1' to folder 'shareaza\tools'.
+==> default: [NuGet] Added file 'chocolateyUninstall.ps1' to folder 'shareaza\tools'.
+==> default: [NuGet] Added file 'shareaza.nupkg' to folder 'shareaza'.
+==> default: [NuGet] Successfully installed 'shareaza 2.7.8.0'.
+==> default: 
+==> default: 
+==> default: shareaza v2.7.8.0 (forced)
+==> default: Contents of 'C:\ProgramData\chocolatey\lib\shareaza\tools\chocolateyInstall.ps1':
+==> default: $packageName = 'shareaza'
+==> default: $installerType = 'exe'
+==> default: $silentArgs = '/VERYSILENT /SUPPRESSMSGBOXES /NORESTART /SP-'
+==> default: $urlArray = @('http://sourceforge.net/projects/shareaza/files/Shareaza/Shareaza-2.7.8.0/Shareaza_2.7.8.0_Win32.exe/download', 'http://sourceforge.net/projects/shareaza/files/Shareaza/Shareaza-2.7.8.0/Shareaza_2.7.8.0_x64.exe/download')
+==> default: $url = $urlArray[0]
+==> default: $checksum = '78761a2c8695e044af3ee899625849445559a5f5'
+==> default: $checksumType = 'sha1'
+==> default: $url64 = $urlArray[1]
+==> default: $checksum64 = 'ba0c4d5622e3694b0134dd693f49d8078edb513e'
+==> default: $checksumType64 = 'sha1'
+==> default: $validExitCodes = @(0)
+==> default: 
+==> default: Install-ChocolateyPackage -PackageName "$packageName" `
+==> default:                           -FileType "$installerType" `
+==> default:                           -SilentArgs "$silentArgs" `
+==> default:                           -Url "$url" `
+==> default:                           -Url64bit "$url64" `
+==> default:                           -ValidExitCodes $validExitCodes `
+==> default:                           -Checksum "$checksum" `
+==> default:                           -ChecksumType "$checksumType" `
+==> default:                           -Checksum64 "$checksum64" `
+==> default:                           -ChecksumType64 "$checksumType64"
+==> default: Calling command ['"C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -NoLogo -ExecutionPolicy Bypass -Command "[System.Threading.Thread]::CurrentThread.CurrentCulture = '';[System.Threading.Thread]::CurrentThread.CurrentUICulture = ''; & import-module -name 'C:\ProgramData\chocolatey\helpers\chocolateyInstaller.psm1'; & 'C:\ProgramData\chocolatey\helpers\chocolateyScriptRunner.ps1' -packageScript 'C:\ProgramData\chocolatey\lib\shareaza\tools\chocolateyInstall.ps1' -installArguments '' -packageParameters ''"']
+==> default:  DEBUG: Posh version is 4.0
+==> default:  DEBUG: Loading community extensions
+==> default:  VERBOSE: Exporting function 'Get-BinRoot'.
+==> default:  VERBOSE: Exporting function 'Get-ChecksumValid'.
+==> default:  VERBOSE: Exporting function 'Get-ChocolateyUnzip'.
+==> default:  VERBOSE: Exporting function 'Get-ChocolateyWebFile'.
+==> default:  VERBOSE: Exporting function 'Get-EnvironmentVariable'.
+==> default:  VERBOSE: Exporting function 'Get-EnvironmentVariableNames'.
+==> default:  VERBOSE: Exporting function 'Get-FtpFile'.
+==> default:  VERBOSE: Exporting function 'Get-ProcessorBits'.
+==> default:  VERBOSE: Exporting function 'Get-UACEnabled'.
+==> default:  VERBOSE: Exporting function 'Get-VirusCheckValid'.
+==> default:  VERBOSE: Exporting function 'Get-WebFile'.
+==> default:  VERBOSE: Exporting function 'Get-WebHeaders'.
+==> default:  VERBOSE: Exporting function 'Install-BinFile'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyDesktopLink'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyEnvironmentVariable'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyExplorerMenuItem'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyFileAssociation'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyInstallPackage'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyPackage'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyPath'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyPinnedTaskBarItem'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyPowershellCommand'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyShortcut'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyVsixPackage'.
+==> default:  VERBOSE: Exporting function 'Install-Vsix'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyZipPackage'.
+==> default:  VERBOSE: Exporting function 'Set-EnvironmentVariable'.
+==> default:  VERBOSE: Exporting function 'Start-ChocolateyProcessAsAdmin'.
+==> default:  VERBOSE: Exporting function 'Test-ProcessAdminRights'.
+==> default:  VERBOSE: Exporting function 'Uninstall-BinFile'.
+==> default:  VERBOSE: Exporting function 'Uninstall-ChocolateyPackage'.
+==> default:  VERBOSE: Exporting function 'UnInstall-ChocolateyZipPackage'.
+==> default:  VERBOSE: Exporting function 'Update-SessionEnvironment'.
+==> default:  VERBOSE: Exporting function 'Write-ChocolateyFailure'.
+==> default:  VERBOSE: Exporting function 'Write-ChocolateySuccess'.
+==> default:  VERBOSE: Exporting function 'Write-FileUpdateLog'.
+==> default:  VERBOSE: Exporting alias 'Generate-BinFile'.
+==> default:  VERBOSE: Exporting alias 'Add-BinFile'.
+==> default: 
+==> default:  VERBOSE: Exporting alias 'Remove-BinFile'.
+==> default:  DEBUG: Running 'Install-ChocolateyPackage' for shareaza with 
+==> default:  url:'http://sourceforge.net/projects/shareaza/files/Shareaza/Shareaza-2.7.8.0/S
+==> default: 
+==> default:  hareaza_2.7.8.0_Win32.exe/download', args: '/VERYSILENT /SUPPRESSMSGBOXES 
+==> default:  /NORESTART /SP-', fileType: 'exe', url64bit: 
+==> default:  'http://sourceforge.net/projects/shareaza/files/Shareaza/Shareaza-2.7.8.0/Share
+==> default:  aza_2.7.8.0_x64.exe/download', checksum: 
+==> default:  '78761a2c8695e044af3ee899625849445559a5f5', checksumType: 'sha1', checksum64: 
+==> default:  'ba0c4d5622e3694b0134dd693f49d8078edb513e', checksumType64: 'sha1', 
+==> default: 
+==> default:  validExitCodes: '0' 
+==> default:  DEBUG: Running 'Get-ChocolateyWebFile' for shareaza with 
+==> default:  url:'http://sourceforge.net/projects/shareaza/files/Shareaza/Shareaza-2.7.8.0/S
+==> default:  hareaza_2.7.8.0_Win32.exe/download', 
+==> default:  fileFullPath:'C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\shareaza\2.7.8.0\
+==> default:  shareazaInstall.exe', 
+==> default:  url64bit:'http://sourceforge.net/projects/shareaza/files/Shareaza/Shareaza-2.7.
+==> default:  8.0/Shareaza_2.7.8.0_x64.exe/download', checksum: 
+==> default:  '78761a2c8695e044af3ee899625849445559a5f5', checksumType: 'sha1', checksum64: 
+==> default: 
+==> default:  'ba0c4d5622e3694b0134dd693f49d8078edb513e', checksumType64: 'sha1'
+==> default:  DEBUG: Running 'Get-ProcessorBits'
+==> default:  DEBUG: CPU is 64 bit
+==> default:  DEBUG: Setting url to 
+==> default:  'http://sourceforge.net/projects/shareaza/files/Shareaza/Shareaza-2.7.8.0/Share
+==> default:  aza_2.7.8.0_x64.exe/download' and bitPackage to 64
+==> default:  DEBUG: Running 'Get-WebHeaders' with 
+==> default:  url:'http://sourceforge.net/projects/shareaza/files/Shareaza/Shareaza-2.7.8.0/S
+==> default:  hareaza_2.7.8.0_x64.exe/download', userAgent: 'chocolatey command line'
+==> default:  DEBUG: Setting the UserAgent to 'chocolatey command line'
+==> default:  DEBUG: Request Headers:
+==> default:  DEBUG:   'Accept':'*/*'
+==> default:  DEBUG:   'User-Agent':'chocolatey command line'
+==> default:  DEBUG: Response Headers:
+==> default: 
+==> default:  DEBUG:   'Connection':'close'
+==> default:  DEBUG:   'Accept-Ranges':'bytes'
+==> default:  DEBUG:   'Content-Length':'13911764'
+==> default:  DEBUG:   'Content-Type':'application/octet-stream'
+==> default:  DEBUG:   'Date':'Tue, 08 Dec 2015 22:18:55 GMT'
+==> default:  DEBUG:   'ETag':'"b63c9e-d446d4-50a2abc067fc0"'
+==> default:  DEBUG:   'Last-Modified':'Sun, 14 Dec 2014 10:39:03 GMT'
+==> default:  DEBUG:   'Server':'Apache'
+==> default:  Downloading shareaza 64 bit
+==> default:    from 'http://sourceforge.net/projects/shareaza/files/Shareaza/Shareaza-2.7.8.0/Shareaza_2.7.8.0_x64.exe/download'
+==> default:  DEBUG: Running 'Get-WebFile' for 
+==> default: 
+==> default:  C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\shareaza\2.7.8.0\shareazaInstal
+==> default:  l.exe with 
+==> default:  url:'http://sourceforge.net/projects/shareaza/files/Shareaza/Shareaza-2.7.8.0/S
+==> default:  hareaza_2.7.8.0_x64.exe/download', userAgent: 'chocolatey command line' 
+==> default:  DEBUG: Setting the UserAgent to 'chocolatey command line'
+==> default:  DEBUG: Checking that 
+==> default: 
+==> default:  'C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\shareaza\2.7.8.0\shareazaInsta
+==> default:  ll.exe' is the size we expect it to be.
+==> default:  DEBUG: Verifying package provided checksum of 
+==> default:  'ba0c4d5622e3694b0134dd693f49d8078edb513e' for 
+==> default:  'C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\shareaza\2.7.8.0\shareazaInsta
+==> default:  ll.exe'.
+==> default:  DEBUG: Running 'Get-ChecksumValid' with 
+==> default:  file:'C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\shareaza\2.7.8.0\shareaza
+==> default:  Install.exe', checksum: 'ba0c4d5622e3694b0134dd693f49d8078edb513e', 
+==> default:  checksumType: 'sha1'
+==> default:  DEBUG: checksum.exe found at 
+==> default:  'C:\ProgramData\chocolatey\helpers\..\tools\checksum.exe'
+==> default:  DEBUG: Executing command 
+==> default:  ['C:\ProgramData\chocolatey\helpers\..\tools\checksum.exe' 
+==> default:  -c="ba0c4d5622e3694b0134dd693f49d8078edb513e" -t="sha1" 
+==> default:  -f="C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\shareaza\2.7.8.0\shareazaIn
+==> default:  stall.exe"]
+==> default:  Hashes match.
+==> default:  DEBUG: Command ['C:\ProgramData\chocolatey\helpers\..\tools\checksum.exe' 
+==> default:  -c="ba0c4d5622e3694b0134dd693f49d8078edb513e" -t="sha1" 
+==> default:  -f="C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\shareaza\2.7.8.0\shareazaIn
+==> default:  stall.exe"] exited with '0'.
+==> default:  DEBUG: Running 'Install-ChocolateyInstallPackage' for shareaza with 
+==> default:  file:'C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\shareaza\2.7.8.0\shareaza
+==> default:  Install.exe', args: '/VERYSILENT /SUPPRESSMSGBOXES /NORESTART /SP-', fileType: 
+==> default:  'exe', validExitCodes: '0' 
+==> default:  Installing shareaza...
+==> default:  DEBUG: Running 'Start-ChocolateyProcessAsAdmin' with 
+==> default:  exeToRun:'C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\shareaza\2.7.8.0\shar
+==> default:  eazaInstall.exe', statements: '/VERYSILENT /SUPPRESSMSGBOXES /NORESTART /SP- ' 
+==> default:  DEBUG: Elevating Permissions and running 
+==> default:  C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\shareaza\2.7.8.0\shareazaInstal
+==> default:  l.exe /VERYSILENT /SUPPRESSMSGBOXES /NORESTART /SP- . This may take a while, 
+==> default:  depending on the statements.
+==> default:  DEBUG: Finishing 'Start-ChocolateyProcessAsAdmin'
+==> default: 
+==> default:  shareaza has been installed.
+==> default: Command ['"C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -NoLogo -ExecutionPolicy Bypass -Command "[System.Threading.Thread]::CurrentThread.CurrentCulture = '';[System.Threading.Thread]::CurrentThread.CurrentUICulture = ''; & import-module -name 'C:\ProgramData\chocolatey\helpers\chocolateyInstaller.psm1'; & 'C:\ProgramData\chocolatey\helpers\chocolateyScriptRunner.ps1' -packageScript 'C:\ProgramData\chocolatey\lib\shareaza\tools\chocolateyInstall.ps1' -installArguments '' -packageParameters ''"'] exited with '0'
+==> default: Calling command ['"shutdown" /a']
+==> default: Command ['"shutdown" /a'] exited with '1116'
+==> default: Capturing package files in 'C:\ProgramData\chocolatey\lib\shareaza'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\shareaza\shareaza.nupkg'
+==> default:   with checksum '926020A3903D35E2A1004D28EBBF6E68'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\shareaza\tools\chocolateyInstall.ps1'
+==> default:   with checksum 'F27B39059EE0B520E8AA304DA6355FA5'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\shareaza\tools\chocolateyUninstall.ps1'
+==> default:   with checksum '49683E55829916B7A5F0F8340E70FF07'
+==> default: Attempting to create directory "C:\ProgramData\chocolatey\.chocolatey\shareaza.2.7.8.0".
+==> default: Attempting to copy "C:\ProgramData\chocolatey\.chocolatey\shareaza.2.7.8.0\.registry.update"
+==> default: 
+==> default:  to "C:\ProgramData\chocolatey\.chocolatey\shareaza.2.7.8.0\.registry".
+==> default: Attempting to delete file "C:\ProgramData\chocolatey\.chocolatey\shareaza.2.7.8.0\.registry.update".
+==> default: Attempting to copy "C:\ProgramData\chocolatey\.chocolatey\shareaza.2.7.8.0\.files.update"
+==> default:  to "C:\ProgramData\chocolatey\.chocolatey\shareaza.2.7.8.0\.files".
+==> default: Attempting to delete file "C:\ProgramData\chocolatey\.chocolatey\shareaza.2.7.8.0\.files.update".
+==> default: Attempting to delete file "C:\ProgramData\chocolatey\.chocolatey\shareaza.2.7.8.0\.sxs".
+==> default: Attempting to delete file "C:\ProgramData\chocolatey\.chocolatey\shareaza.2.7.8.0\.pin".
+==> default:  The install of shareaza was successful.
+==> default: 
+==> default: Chocolatey installed 2/2 package(s). 0 package(s) failed.
+==> default:  See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).
+==> default: Exiting with 0

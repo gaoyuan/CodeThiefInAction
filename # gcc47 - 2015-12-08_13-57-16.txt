@@ -1,0 +1,2 @@
+Homebrew build logs for homebrew/versions/gcc47 on OS X 10.10.5
+Build date: 2015-12-08 13:57:16

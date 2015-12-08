@@ -25,6 +25,7 @@ function startLevel(map) {
 
     map.placePlayer(7, 5);
     
+    
 
     map.placeObject(15, 12, 'computer');
 
