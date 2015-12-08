@@ -1,0 +1,238 @@
+        private System.Collections.Concurrent.ConcurrentDictionary<string,string> ImportCustomers(IEnumerable<Mozu.Api.Contracts.Customer.CustomerAccountAndAuthInfo> accountAuthCollection)
+        {
+            var accountResource = new Mozu.Api.Resources.Commerce.Customer.CustomerAccountResource(_apiContext);
+            var contactResource = new Mozu.Api.Resources.Commerce.Customer.Accounts.CustomerContactResource(_apiContext);
+
+            var accountExternalIds = new System.Collections.Concurrent.ConcurrentDictionary<string, string>();
+
+            Parallel.ForEach(accountAuthCollection, new System.Threading.Tasks.ParallelOptions() { MaxDegreeOfParallelism = 1 }, accountAuthInfo =>
+            {
+                var filter = string.Format("ExternalId eq '{0}'", accountAuthInfo.Account.ExternalId);
+
+                var importedResultStatus = string.Empty;
+
+                Mozu.Api.Contracts.Customer.CustomerAccount existingAcct = null;
+
+                var existingAcctCollection = accountResource.GetAccountsAsync(filter: filter).Result;
+
+                if (existingAcctCollection.Items.Count == 0)
+                {
+                    try
+                    {
+                        existingAcct = accountResource.AddAccountAsync(accountAuthInfo.Account, "Id,ExternalId").Result;
+                        importedResultStatus = string.Format("Added-New-Account-Id:{0}", existingAcct.Id);
+
+                        var existingAcctAuthTicket = accountResource.AddLoginToExistingCustomerAsync(new Mozu.Api.Contracts.Customer.CustomerLoginInfo()
+                        {
+                            EmailAddress = accountAuthInfo.Account.EmailAddress,
+                            IsImport = accountAuthInfo.IsImport,
+                            Password = accountAuthInfo.Password,
+                            Username = accountAuthInfo.Account.UserName,
+                        }, existingAcct.Id).Result;
+
+                        foreach (var contact in accountAuthInfo.Account.Contacts)
+                        {
+                            var existingContact = contactResource.AddAccountContactAsync(contact, existingAcct.Id, "Id").Result;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        importedResultStatus = "Error-Encountered";
+                    }
+
+                    accountExternalIds.TryAdd(existingAcct.ExternalId, importedResultStatus);
+                }
+            });
+
+            return accountExternalIds;
+        }
+
+        private Mozu.Api.Contracts.Customer.CustomerAccount MapCustomerAccount(System.Data.DataRow drAccount)
+        {
+            var mappedAccount = new Mozu.Api.Contracts.Customer.CustomerAccount()
+            {
+                ExternalId = drAccount["Id"].ToString(),
+                EmailAddress = drAccount["Email"].ToString(),
+                FirstName = drAccount["FirstName"].ToString(),
+                LastName = drAccount["LastNameOrSurname"].ToString(),
+                CompanyOrOrganization = drAccount["CompanyOrOrganization"].ToString(),
+                TaxExempt = Convert.ToBoolean(drAccount["TaxExempt"]),
+                TaxId = drAccount["TaxId"].ToString(),
+                AcceptsMarketing = Convert.ToBoolean(drAccount["AcceptsMarketing"]),
+                LocaleCode = drAccount["LocaleCode"].ToString(),
+                IsActive = Convert.ToBoolean(drAccount["IsActive"]),
+                IsAnonymous = Convert.ToBoolean(drAccount["IsAnonymous"]),
+                UserName = drAccount["UserName"].ToString(),
+            };
+
+            return mappedAccount;
+        }
+
+        private Mozu.Api.Contracts.Customer.CustomerLoginInfo MapCustomerLoginInfo(System.Data.DataRow drAccount)
+        {
+            var mappedAccountAndAuthInfo = new Mozu.Api.Contracts.Customer.CustomerLoginInfo()
+            {
+                IsImport = true,
+                EmailAddress = drAccount["Email"].ToString(),
+                Password = drAccount["Password"].ToString(),
+                Username = drAccount["Username"].ToString(),
+            };
+
+            return mappedAccountAndAuthInfo;
+        }
+
+        private Mozu.Api.Contracts.Customer.CustomerContact MapCustomerContact(System.Data.DataRow drContact)
+        {
+            var mappedContact = new Mozu.Api.Contracts.Customer.CustomerContact()
+            {
+                CompanyOrOrganization = drContact["CompanyOrOrganization"].ToString(),
+                Email = drContact["Email"].ToString(),
+                FaxNumber = drContact["FaxNumber"].ToString(),
+                FirstName = drContact["FirstName"].ToString(),
+                LastNameOrSurname = drContact["LastNameOrSurname"].ToString(),
+                MiddleNameOrInitial = drContact["MiddleNameOrInitial"].ToString(),
+                Types = new List<Mozu.Api.Contracts.Customer.ContactType>() 
+                { 
+                    new Mozu.Api.Contracts.Customer.ContactType()
+                    {
+                        Name = drContact["Type"].ToString(),
+                        IsPrimary = Convert.ToBoolean(drContact["IsPrimary"]),
+                    }
+                },
+                Address = new Mozu.Api.Contracts.Core.Address() 
+                {
+                    Address1 = drContact["Address1"].ToString(),
+                    Address2 = drContact["Address2"].ToString(),
+                    AddressType = drContact["AddressType"].ToString(),
+                    CityOrTown = drContact["CityOrTown"].ToString(),
+                    StateOrProvince = drContact["StateOrProvince"].ToString(),
+                    PostalOrZipCode = drContact["PostalOrZipCode"].ToString(),
+                    CountryCode = drContact["CountryCode"].ToString()
+                },
+                PhoneNumbers = new Mozu.Api.Contracts.Core.Phone()
+                {
+                    Home = drContact["HomePhone"].ToString(),
+                    Mobile = drContact["MobilePhone"].ToString(),
+                    Work = drContact["WorkPhone"].ToString(),
+                }
+            };
+    
+            return mappedContact;
+        }
+      
+        [TestMethod]
+        public void Add_Customer_Accounts_Test()
+        {
+            var tblAccounts = GetAccountTestData();
+            var tblContacts = GetContactTestData();
+            var accountAndAuths = new List<Mozu.Api.Contracts.Customer.CustomerAccountAndAuthInfo>();
+
+            foreach(System.Data.DataRow drAcct in tblAccounts.Rows)
+            {
+                var customerLoginInfo = MapCustomerLoginInfo(drAcct);
+                var account = MapCustomerAccount(drAcct);
+
+                System.Data.DataRow[] drContacts = tblContacts.Select(string.Format("Id = '{0}'", drAcct["Id"].ToString()));
+
+                account.Contacts = new List<Mozu.Api.Contracts.Customer.CustomerContact>();
+                foreach(System.Data.DataRow drContact in drContacts)
+                {
+                    var  contact = MapCustomerContact(drContact);
+                    account.Contacts.Add(contact);
+                }
+
+                accountAndAuths.Add(new Mozu.Api.Contracts.Customer.CustomerAccountAndAuthInfo()
+                {
+                    Account = account,
+                    IsImport = Convert.ToBoolean(customerLoginInfo.IsImport),
+                    Password = customerLoginInfo.Password
+                });
+            }
+
+            var importedAcctIds = ImportCustomers(accountAndAuths);
+        }
+
+        private System.Data.DataTable GetAccountTestData()
+        {
+            var tblAccount = new System.Data.DataTable();
+            tblAccount.Columns.Add("Id");
+            tblAccount.Columns.Add("AccountID");
+            tblAccount.Columns.Add("UserName");
+            tblAccount.Columns.Add("Email");
+            tblAccount.Columns.Add("Password");
+            tblAccount.Columns.Add("FirstName");
+            tblAccount.Columns.Add("LastNameOrSurname");
+            tblAccount.Columns.Add("CompanyOrOrganization");
+            tblAccount.Columns.Add("TaxExempt");
+            tblAccount.Columns.Add("TaxId");
+            tblAccount.Columns.Add("AcceptsMarketing");
+            tblAccount.Columns.Add("LocaleCode");
+            tblAccount.Columns.Add("UserRole");
+            tblAccount.Columns.Add("IsActive");
+            tblAccount.Columns.Add("IsAnonymous");
+            tblAccount.Columns.Add("Total Order Amount");
+            tblAccount.Columns.Add("Total Orders");
+            tblAccount.Columns.Add("Last Order Date");
+            tblAccount.Columns.Add("Total Contacts");
+            tblAccount.Columns.Add("LastModifiedDate");
+            
+            System.Data.DataRow newRow = tblAccount.NewRow();
+            newRow["Id"] = "101"; //externalId
+            newRow["UserName"] = "vip_shopper";
+            newRow["Email"]  = "vip_shopper@mozu.com";
+            newRow["Password"] = "IBuyOnline2015";
+            newRow["FirstName"] = "Jon";
+            newRow["LastNameOrSurname"] = "Smithe";
+            newRow["CompanyOrOrganization"] = "Main Corp";
+            newRow["TaxExempt"] = false;
+            newRow["AcceptsMarketing"] = true;
+            newRow["LocaleCode"] = "en-US";
+            newRow["IsActive"] = true;
+            newRow["IsAnonymous"] = false;
+            tblAccount.Rows.Add(newRow);
+            
+            return tblAccount;
+        }
+
+        private System.Data.DataTable GetContactTestData()
+        {
+            var tblContact = new System.Data.DataTable();
+            tblContact.Columns.Add("Id");
+            tblContact.Columns.Add("Type");
+            tblContact.Columns.Add("IsPrimary");
+            tblContact.Columns.Add("CompanyOrOrganization");
+            tblContact.Columns.Add("FirstName");
+            tblContact.Columns.Add("MiddleNameorInitial");
+            tblContact.Columns.Add("LastNameOrSurname");
+            tblContact.Columns.Add("Email");
+            tblContact.Columns.Add("FaxNumber");
+            tblContact.Columns.Add("HomePhone");
+            tblContact.Columns.Add("MobilePhone");
+            tblContact.Columns.Add("WorkPhone");
+            tblContact.Columns.Add("AddressType");
+            tblContact.Columns.Add("Address1");
+            tblContact.Columns.Add("Address2");
+            tblContact.Columns.Add("CityOrTown");
+            tblContact.Columns.Add("StateOrProvince");
+            tblContact.Columns.Add("PostalOrZipCode");
+            tblContact.Columns.Add("CountryCode");
+
+            System.Data.DataRow newRow = tblContact.NewRow();
+            newRow["Id"] = "101"; //externalId
+            newRow["Type"] = "Billing";
+            newRow["IsPrimary"] = true;
+            newRow["CompanyOrOrganization"] = "Main Corp";
+            newRow["FirstName"] = "Jon";
+            newRow["LastNameOrSurname"] = "Smithe";
+            newRow["Email"] = "vip_shopper@mozu.com";
+            newRow["WorkPhone"] = "555-555-5555";
+            newRow["AddressType"] = "Commercial";
+            newRow["Address1"] = "100 Main Corp Way";
+            newRow["Address2"] = "Building 9";
+            newRow["CityOrTown"] = "New York";
+            newRow["StateOrProvince"] = "NY";
+            newRow["PostalOrZipCode"] = "10026";
+            newRow["CountryCode"] = "US";
+            tblContact.Rows.Add(newRow);
+            return tblContact;
+        }

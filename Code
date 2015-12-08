@@ -1,0 +1,75 @@
+Imports System.Diagnostics.Eventing
+Imports System.Text.RegularExpressions
+
+Public Class Form1
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Dim fileReader As String
+        fileReader = My.Computer.FileSystem.ReadAllText("C:\Users\Najum\Music\abc.txt")
+
+        Dim Reader As New System.IO.StreamReader("C:\Users\Najum\Music\abc.txt")
+
+        Dim str As String
+
+start:
+        For I = 0 To 10
+
+            str = Reader.ReadLine()
+            Dim Mob = str.Substring(0, str.IndexOf(":"))
+            If Mob = "Mobile " Then
+                Mob = Mob
+            Else
+                GoTo start
+            End If
+
+            Dim Number = str.Substring(str.IndexOf(":") + 1, str.IndexOf("#") - 9)
+
+            Dim Number_Format As New Regex("05\d{7}")
+            If Number_Format.IsMatch(Number) Then
+                Number = Number
+            Else
+                GoTo start
+            End If
+
+            Dim NewString = str.Substring(str.IndexOf("#") + 9)
+            Dim Data As String
+
+            Dim Time_Date As String
+
+            Data = NewString
+
+            Dim Data2 As String
+            Dim Name As String
+
+            Dim Email = Data.Substring(0, Data.IndexOf("#"))
+            Dim Email_Format As New Regex("([\w-+]+(?:\.[\w-+]+)*@(?:[\w-]+\.)+[a-zA-Z]{2,7})")
+            If Email_Format.IsMatch(Email) Then
+                Email = Email
+            Else
+                GoTo start
+            End If
+
+            Data2 = Data.Substring(Data.IndexOf("#") + 8)
+
+            Name = Data2.Substring(0, Data2.IndexOf("&"))
+
+            Dim Name_Format As New Regex("[a-zA-Z]")
+            If Name_Format.IsMatch(Name) Then
+                Name = Name
+            Else
+                GoTo start
+            End If
+
+            Time_Date = Data2.Substring(Data2.IndexOf("&") + 2)
+
+            My.Computer.FileSystem.WriteAllText("C:\Users\Najum\Music\Number.txt",
+Number + vbNewLine, True)
+            My.Computer.FileSystem.WriteAllText("C:\Users\Najum\Music\Email.txt",
+Email + vbNewLine, True)
+            My.Computer.FileSystem.WriteAllText("C:\Users\Najum\Music\Name.txt",
+Name + vbNewLine, True)
+            My.Computer.FileSystem.WriteAllText("C:\Users\Najum\Music\Time_date.txt",
+Time_Date + vbNewLine, True)
+        Next
+
+    End Sub
+End Class

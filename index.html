@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://bin.webduino.io
+
+Copyright (c) 2015 by anonymous (http://bin.webduino.io/foco/1/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+
+<head>
+  <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="msapplication-tap-highlight" content="no">
+  <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+  <title>遙控自走車</title>
+  <script src="https://webduino.io/components/webcomponentsjs/webcomponents.js"></script>
+  <link rel='import' href='https://webduino.io/components/webduino/web-arduino.html' />
+  <link rel='import' href='https://webduino.io/components/webduino/wa-led.html' />
+  <style>
+  body {
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  
+  ;
+  </style>
+  <style id="jsbin-css">
+  html,
+  body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    background-color: #fff;
+    background-image: url(https://lh3.googleusercontent.com/-axih1ezTBZk/VYJyraFTlMI/AAAAAAABH-4/RbL6j3myoiY/s000/control.jpg);
+    background-size: 200%;
+    background-repeat: no-repeat;
+    background-position: left bottom;
+  }
+  
+  #show {
+    /* background-image:url(https://lh3.googleusercontent.com/-qbPeem4w5Mw/VYEoVlHKmMI/AAAAAAABH-I/Y6k66Gz7Tr0/s000/a1.jpg); */
+    width: 200px;
+    height: 200px;
+    background-size: cover;
+    margin: 20px auto 0;
+  }
+  
+  #show.n {
+    display: none;
+  }
+  
+  #show.f {
+    -webkit-transform: rotate(0deg);
+  }
+  
+  #show.b {
+    -webkit-transform: rotate(180deg);
+  }
+  
+  #show.l {
+    -webkit-transform: rotate(90deg);
+  }
+  
+  #show.r {
+    -webkit-transform: rotate(-90deg);
+  }
+  
+  #show.fl {
+    -webkit-transform: rotate(45deg);
+  }
+  
+  #show.fr {
+    -webkit-transform: rotate(-45deg);
+  }
+  
+  #show.bl {
+    -webkit-transform: rotate(135deg);
+  }
+  
+  #show.br {
+    -webkit-transform: rotate(225deg);
+  }
+  
+  #f {
+    opacity: .4;
+    position: absolute;
+    left: 0;
+    width: 40%;
+    border: 1px dashed #fff;
+  }
+  
+  #b {
+    opacity: .4;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40%;
+    border: 1px dashed #fff;
+  }
+  
+  #l {
+    opacity: .4;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 21%;
+    border: 1px dashed #fff;
+  }
+  
+  #r {
+    opacity: .4;
+    position: absolute;
+    bottom: 0;
+    right: calc(21% + 5px);
+    width: 21%;
+    border: 1px dashed #fff;
+  }
+  </style>
+</head>
+
+<body id="body">
+  <web-arduino id="board" device="May6">
+    <wa-led id='rb' pin='7'></wa-led>
+    <wa-led id='rf' pin='6'></wa-led>
+    <wa-led id='lb' pin='9'></wa-led>
+    <wa-led id='lf' pin='8'></wa-led>
+  </web-arduino>
+  <div id="f"></div>
+  <div id="b"></div>
+  <div id="l"></div>
+  <div id="r"></div>
+  <div id="show" class="n"></div>
+  <script id="jsbin-javascript">
+  window.addEventListener('WebComponentsReady', function() {
+    //start();
+    var board = document.getElementById('board'),
+      body = document.getElementById('body'),
+      F = document.getElementById('f'),
+      B = document.getElementById('b'),
+      L = document.getElementById('l'),
+      R = document.getElementById('r'),
+      show = document.getElementById('show'),
+      cf = 0,
+      cb = 0,
+      cl = 0,
+      cr = 0,
+      w = window.innerWidth;
+    var fbpower = 0.8;
+    var rlpower = 0.8;
+    F.style.height = w / 3.2 + 'px';
+    F.style.bottom = ((w / 3.2) + 5) + 'px';
+    B.style.height = w / 3.2 + 'px';
+    L.style.height = w / 4 * 2 + 'px';
+    R.style.height = w / 4 * 2 + 'px';
+
+    window.addEventListener('resize', rs);
+
+    function rs() {
+      w = window.innerWidth;
+      F.style.height = w / 3.2 + 'px';
+      F.style.bottom = ((w / 3.2) + 5) + 'px';
+      B.style.height = w / 3.2 + 'px';
+      L.style.height = w / 4 * 2 + 'px';
+      R.style.height = w / 4 * 2 + 'px';
+    }
+
+    board.on('ready', function ready() {
+      var rf = document.getElementById('rf'),
+        rb = document.getElementById('rb'),
+        lf = document.getElementById('lf'),
+        lb = document.getElementById('lb');
+      rf.off();
+      rb.off();
+      lf.off();
+      lb.off();
+
+      F.addEventListener('touchstart', function() {
+        body.style.backgroundPosition = 'right bottom';
+        cf = 1;
+        rf.on();
+        rb.off();
+        lf.on();
+        lb.off();
+        if (cl === 0 && cr === 0) {
+          show.className = 'f';
+        }
+        if (cl == 1) {
+          show.className = 'fl';
+        }
+        if (cr == 1) {
+          show.className = 'fr';
+        }
+      }, false);
+
+      F.addEventListener('touchend', function() {
+        body.style.backgroundPosition = 'left bottom';
+        cf = 0;
+        rf.off();
+        rb.off();
+        lf.off();
+        lb.off();
+        show.className = 'n';
+      }, false);
+
+
+      B.addEventListener('touchstart', function() {
+        body.style.backgroundPosition = 'right bottom';
+        cb = 1;
+        rf.off();
+        rb.on();
+        lf.off();
+        lb.on();
+        if (cl === 0 && cr === 0) {
+          show.className = 'b';
+        }
+        if (cl == 1) {
+          show.className = 'bl';
+        }
+        if (cr == 1) {
+          show.className = 'br';
+        }
+      }, false);
+
+      B.addEventListener('touchend', function() {
+        body.style.backgroundPosition = 'left bottom';
+        cb = 0;
+        rf.off();
+        rb.off();
+        lf.off();
+        lb.off();
+        show.className = 'n';
+      }, false);
+
+
+
+      L.addEventListener('touchstart', function() {
+        body.style.backgroundPosition = 'right bottom';
+        cl = 1;
+        rf.off();
+        rb.on();
+        lf.on();
+        lb.off();
+        if (cf === 0 && cb === 0) {
+          show.className = 'l';
+        }
+        if (cf == 1) {
+          show.className = 'fl';
+        }
+        if (cb == 1) {
+          show.className = 'bl';
+        }
+      }, false);
+
+      L.addEventListener('touchend', function() {
+        body.style.backgroundPosition = 'left bottom';
+        cl = 0;
+        rf.off();
+        rb.off();
+        lf.off();
+        lb.off();
+        show.className = 'n';
+      }, false);
+
+      R.addEventListener('touchstart', function() {
+        body.style.backgroundPosition = 'right bottom';
+        cr = 1;
+        rf.on();
+        rb.off();
+        lf.off();
+        lb.on();
+        if (cf === 0 && cb === 0) {
+          show.className = 'r';
+        }
+        if (cf == 1) {
+          show.className = 'fr';
+        }
+        if (cb == 1) {
+          show.className = 'br';
+        }
+      }, false);
+
+      R.addEventListener('touchend', function() {
+        body.style.backgroundPosition = 'left bottom';
+        cr = 0;
+        rf.off();
+        rb.off();
+        lf.off();
+        lb.off();
+        show.className = 'n';
+      }, false);
+
+
+    });
+
+  }, false);
+  </script>
+
+<script id="jsbin-source-html" type="text/html"><!DOCTYPE html>
+<\!--
+Created using JS Bin
+http://bin.webduino.io
+
+Copyright (c) 2015 by anonymous (http://bin.webduino.io/foco/1/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+
+<head>
+  <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="msapplication-tap-highlight" content="no">
+  <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+  <title>遙控自走車</title>
+  <script src="https://webduino.io/components/webcomponentsjs/webcomponents.js"><\/script>
+  <link rel='import' href='https://webduino.io/components/webduino/web-arduino.html' />
+  <link rel='import' href='https://webduino.io/components/webduino/wa-led.html' />
+  <style>
+  body {
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  
+  ;
+  </style>
+  <style id="jsbin-css">
+  html,
+  body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    background-color: #fff;
+    background-image: url(https://lh3.googleusercontent.com/-axih1ezTBZk/VYJyraFTlMI/AAAAAAABH-4/RbL6j3myoiY/s000/control.jpg);
+    background-size: 200%;
+    background-repeat: no-repeat;
+    background-position: left bottom;
+  }
+  
+  #show {
+    /* background-image:url(https://lh3.googleusercontent.com/-qbPeem4w5Mw/VYEoVlHKmMI/AAAAAAABH-I/Y6k66Gz7Tr0/s000/a1.jpg); */
+    width: 200px;
+    height: 200px;
+    background-size: cover;
+    margin: 20px auto 0;
+  }
+  
+  #show.n {
+    display: none;
+  }
+  
+  #show.f {
+    -webkit-transform: rotate(0deg);
+  }
+  
+  #show.b {
+    -webkit-transform: rotate(180deg);
+  }
+  
+  #show.l {
+    -webkit-transform: rotate(90deg);
+  }
+  
+  #show.r {
+    -webkit-transform: rotate(-90deg);
+  }
+  
+  #show.fl {
+    -webkit-transform: rotate(45deg);
+  }
+  
+  #show.fr {
+    -webkit-transform: rotate(-45deg);
+  }
+  
+  #show.bl {
+    -webkit-transform: rotate(135deg);
+  }
+  
+  #show.br {
+    -webkit-transform: rotate(225deg);
+  }
+  
+  #f {
+    opacity: .4;
+    position: absolute;
+    left: 0;
+    width: 40%;
+    border: 1px dashed #fff;
+  }
+  
+  #b {
+    opacity: .4;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40%;
+    border: 1px dashed #fff;
+  }
+  
+  #l {
+    opacity: .4;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 21%;
+    border: 1px dashed #fff;
+  }
+  
+  #r {
+    opacity: .4;
+    position: absolute;
+    bottom: 0;
+    right: calc(21% + 5px);
+    width: 21%;
+    border: 1px dashed #fff;
+  }
+  </style>
+</head>
+
+<body id="body">
+  <web-arduino id="board" device="May6">
+    <wa-led id='rb' pin='7'></wa-led>
+    <wa-led id='rf' pin='6'></wa-led>
+    <wa-led id='lb' pin='9'></wa-led>
+    <wa-led id='lf' pin='8'></wa-led>
+  </web-arduino>
+  <div id="f"></div>
+  <div id="b"></div>
+  <div id="l"></div>
+  <div id="r"></div>
+  <div id="show" class="n"></div>
+  <script id="jsbin-javascript">
+  window.addEventListener('WebComponentsReady', function() {
+    //start();
+    var board = document.getElementById('board'),
+      body = document.getElementById('body'),
+      F = document.getElementById('f'),
+      B = document.getElementById('b'),
+      L = document.getElementById('l'),
+      R = document.getElementById('r'),
+      show = document.getElementById('show'),
+      cf = 0,
+      cb = 0,
+      cl = 0,
+      cr = 0,
+      w = window.innerWidth;
+    var fbpower = 0.8;
+    var rlpower = 0.8;
+    F.style.height = w / 3.2 + 'px';
+    F.style.bottom = ((w / 3.2) + 5) + 'px';
+    B.style.height = w / 3.2 + 'px';
+    L.style.height = w / 4 * 2 + 'px';
+    R.style.height = w / 4 * 2 + 'px';
+
+    window.addEventListener('resize', rs);
+
+    function rs() {
+      w = window.innerWidth;
+      F.style.height = w / 3.2 + 'px';
+      F.style.bottom = ((w / 3.2) + 5) + 'px';
+      B.style.height = w / 3.2 + 'px';
+      L.style.height = w / 4 * 2 + 'px';
+      R.style.height = w / 4 * 2 + 'px';
+    }
+
+    board.on('ready', function ready() {
+      var rf = document.getElementById('rf'),
+        rb = document.getElementById('rb'),
+        lf = document.getElementById('lf'),
+        lb = document.getElementById('lb');
+      rf.off();
+      rb.off();
+      lf.off();
+      lb.off();
+
+      F.addEventListener('touchstart', function() {
+        body.style.backgroundPosition = 'right bottom';
+        cf = 1;
+        rf.on();
+        rb.off();
+        lf.on();
+        lb.off();
+        if (cl === 0 && cr === 0) {
+          show.className = 'f';
+        }
+        if (cl == 1) {
+          show.className = 'fl';
+        }
+        if (cr == 1) {
+          show.className = 'fr';
+        }
+      }, false);
+
+      F.addEventListener('touchend', function() {
+        body.style.backgroundPosition = 'left bottom';
+        cf = 0;
+        rf.off();
+        rb.off();
+        lf.off();
+        lb.off();
+        show.className = 'n';
+      }, false);
+
+
+      B.addEventListener('touchstart', function() {
+        body.style.backgroundPosition = 'right bottom';
+        cb = 1;
+        rf.off();
+        rb.on();
+        lf.off();
+        lb.on();
+        if (cl === 0 && cr === 0) {
+          show.className = 'b';
+        }
+        if (cl == 1) {
+          show.className = 'bl';
+        }
+        if (cr == 1) {
+          show.className = 'br';
+        }
+      }, false);
+
+      B.addEventListener('touchend', function() {
+        body.style.backgroundPosition = 'left bottom';
+        cb = 0;
+        rf.off();
+        rb.off();
+        lf.off();
+        lb.off();
+        show.className = 'n';
+      }, false);
+
+
+
+      L.addEventListener('touchstart', function() {
+        body.style.backgroundPosition = 'right bottom';
+        cl = 1;
+        rf.off();
+        rb.on();
+        lf.on();
+        lb.off();
+        if (cf === 0 && cb === 0) {
+          show.className = 'l';
+        }
+        if (cf == 1) {
+          show.className = 'fl';
+        }
+        if (cb == 1) {
+          show.className = 'bl';
+        }
+      }, false);
+
+      L.addEventListener('touchend', function() {
+        body.style.backgroundPosition = 'left bottom';
+        cl = 0;
+        rf.off();
+        rb.off();
+        lf.off();
+        lb.off();
+        show.className = 'n';
+      }, false);
+
+      R.addEventListener('touchstart', function() {
+        body.style.backgroundPosition = 'right bottom';
+        cr = 1;
+        rf.on();
+        rb.off();
+        lf.off();
+        lb.on();
+        if (cf === 0 && cb === 0) {
+          show.className = 'r';
+        }
+        if (cf == 1) {
+          show.className = 'fr';
+        }
+        if (cb == 1) {
+          show.className = 'br';
+        }
+      }, false);
+
+      R.addEventListener('touchend', function() {
+        body.style.backgroundPosition = 'left bottom';
+        cr = 0;
+        rf.off();
+        rb.off();
+        lf.off();
+        lb.off();
+        show.className = 'n';
+      }, false);
+
+
+    });
+
+  }, false);
+  <\/script>
+</body>
+
+</html>
+</script>
+
+</body>
+
+</html>
