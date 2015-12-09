@@ -2,40 +2,18 @@
 <registrySnapshot xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <user>S-1-5-21-1953236517-242735908-2433092285-500</user>
   <keys>
-    <key installerType="InnoSetup" displayName="Shareaza 2.7.8.0" displayVersion="2.7.8.0">
-      <RegistryView>Registry64</RegistryView>
-      <KeyPath>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Shareaza_is1</KeyPath>
-      <DefaultValue />
-      <InstallLocation>C:\Program Files\Shareaza\</InstallLocation>
-      <UninstallString>"C:\Program Files\Shareaza\Uninstall\unins000.exe" /SILENT</UninstallString>
-      <HasQuietUninstall>true</HasQuietUninstall>
-      <Publisher>Shareaza Development Team</Publisher>
-      <InstallDate>20151208</InstallDate>
-      <InstallSource />
-      <Language />
-      <Version />
-      <VersionMajor />
-      <VersionMinor />
-      <SystemComponent>false</SystemComponent>
-      <WindowsInstaller>false</WindowsInstaller>
-      <NoRemove>false</NoRemove>
-      <NoModify>true</NoModify>
-      <NoRepair>true</NoRepair>
-      <ReleaseType />
-      <ParentKeyName />
-    </key>
-    <key installerType="Custom" displayName="Microsoft Visual C++ 2013 Redistributable (x64) - 12.0.21005" displayVersion="12.0.21005.1">
+    <key installerType="Unknown" displayName="Snarl 3.1" displayVersion="3.1">
       <RegistryView>Registry32</RegistryView>
-      <KeyPath>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{7f51bdb9-ee21-49ee-94d6-90afc321780e}</KeyPath>
+      <KeyPath>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Snarl</KeyPath>
       <DefaultValue />
       <InstallLocation />
-      <UninstallString>"C:\ProgramData\Package Cache\{7f51bdb9-ee21-49ee-94d6-90afc321780e}\vcredist_x64.exe" /uninstall /quiet</UninstallString>
-      <HasQuietUninstall>true</HasQuietUninstall>
-      <Publisher>Microsoft Corporation</Publisher>
+      <UninstallString>C:\Program Files (x86)\full phat\Snarl\uninst.exe</UninstallString>
+      <HasQuietUninstall>false</HasQuietUninstall>
+      <Publisher>full phat products</Publisher>
       <InstallDate />
       <InstallSource />
       <Language />
-      <Version />
+      <Version>2555989</Version>
       <VersionMajor />
       <VersionMinor />
       <SystemComponent>false</SystemComponent>

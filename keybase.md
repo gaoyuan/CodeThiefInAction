@@ -2,9 +2,9 @@
 
 I hereby claim:
 
-  * I am szarapka on github.
-  * I am szarapka (https://keybase.io/szarapka) on keybase.
-  * I have a public key whose fingerprint is 7DD0 0EC0 5C6A BB3E 1687  9B8B A561 9050 076C 201E
+  * I am cheshire137 on github.
+  * I am cheshire137 (https://keybase.io/cheshire137) on keybase.
+  * I have a public key whose fingerprint is 431B 3CFB ED56 21F3 DABE  E8D8 B6D4 FA53 3134 004B
 
 To claim this, I am signing this object:
 
@@ -12,53 +12,53 @@ To claim this, I am signing this object:
 {
     "body": {
         "key": {
-            "eldest_kid": "01015c3a28a1cc678a33dda76d01f062065e4a26d803d3e8a64f16c60a80d0a733740a",
-            "fingerprint": "7dd00ec05c6abb3e16879b8ba5619050076c201e",
+            "eldest_kid": "01015eec3be6583156825b92183fb12d7d3ee808cc4387ac56d8a5545dd77c6904480a",
+            "fingerprint": "431b3cfbed5621f3dabee8d8b6d4fa533134004b",
             "host": "keybase.io",
-            "key_id": "a5619050076c201e",
-            "kid": "01015c3a28a1cc678a33dda76d01f062065e4a26d803d3e8a64f16c60a80d0a733740a",
-            "uid": "0c9e5da4206946c800e5f0e9b9d61d19",
-            "username": "szarapka"
+            "key_id": "b6d4fa533134004b",
+            "kid": "01015eec3be6583156825b92183fb12d7d3ee808cc4387ac56d8a5545dd77c6904480a",
+            "uid": "9986020e7bf502aaa0ca6e41de0bd500",
+            "username": "cheshire137"
         },
         "service": {
             "name": "github",
-            "username": "szarapka"
+            "username": "cheshire137"
         },
         "type": "web_service_binding",
         "version": 1
     },
-    "ctime": 1449613186,
+    "ctime": 1449630291,
     "expire_in": 157680000,
-    "prev": "0e266f384d72449635ce451ac8a6eadc7d785520078f5ea7b85a05a18e20ae40",
-    "seqno": 3,
+    "prev": "7999b18c52861c0ac19474e7adf6e36ee384a54154dd65617c1ccc3df626b710",
+    "seqno": 20,
     "tag": "signature"
 }
 ```
 
-with the key [7DD0 0EC0 5C6A BB3E 1687  9B8B A561 9050 076C 201E](https://keybase.io/szarapka), yielding the signature:
+with the key [431B 3CFB ED56 21F3 DABE  E8D8 B6D4 FA53 3134 004B](https://keybase.io/cheshire137), yielding the signature:
 
 ```
 -----BEGIN PGP MESSAGE-----
 Version: Keybase OpenPGP v2.0.49
 Comment: https://keybase.io/crypto
 
-yMISAnicrZJdSFRBFMfX/MwM7KFS0JdrWojJzP2Ye3czwUR6SKQkkvJjmTszd72Y
-u9vdXc3EULGEEtOKxIceDJGiUgykLAtXMrQs0ChTCyqpzIqIUB8S6l6zt3rraZgz
-/9/wO4dzf32oLTqEdHR1kDdXb4Q8Cp4J2A64CuqrOdVDqzhHNVfGVg52mDKf31mm
-U87BAQigRATMKxgSgmQFCwKlWEYUQA0gHiCJiZhHVAECFZiCkahBRBDACqAAy4Ig
-iwBzaZymu13M8Bq6229+K1MKACNAIgirqsAgUmS7qqhYQtAOJABkRHgAmQmWenwW
-Ycqp2MfSdY9ZMy/OFb2/5P+zd+D3d8TOJIpFk7OLiCimvKQBZlftFEEK7VbQxww3
-Lmdm2ncMG9hbhrmaNM6sVuiEWYNdfXXp/tKA+m/CX+W1SpVMda7CTlV3U3N+JlPB
-DJ/ucXMOaCaJX7doKIp2BAWooDSOHfXqBnPqVkKSkSkKQBrnNViF1QXjEdIERaQy
-bzGCRJgoQUzM9hmmRKayIkm8OU1FkxiWVUXCQMJQYTzATASc1c4Rt4dzCKYmdlni
-usuN/QGDcTVDg0VhtpBoW0T4GmuvbNFrY/9smzgWZWtMCgaTLvZevtk+0pnbofU0
-1+R1JS+NPz7ecDfsW5kwuTxc6zkZkXUo5V5+9sTuxrrQBH2xf2vR29SnkxvqtMZx
-l3j2zuadu/ZxG2NPyCUfQpuuf8yPyLy0KRT3llxJ9GjwR5Ww6Dqdow9kRH6fmu5+
-PhUZN59Tf5tET4+62lnu3EL+udTRkZbyuOXPM/3B4Pae+CJ31J53WY6+hxNyQuu6
-zhdtA2p6Y3YGH2jem3iquzblmb/qZ2V5a0zGNV9fVPzg/t7w820NxTMttwa+vMZz
-he9rbE9alhaMvNLZg5mvmh58an45FD42kF0cU7BtURpOmWfJsxcKMr7GbdnRX1j0
-C4qgPN0=
-=onIA
+yMIXAnicrZJbSFRBGMd3u6oUSmE3omjKithq5pwz52J2MU1E9CVBiqx1brt70nZt
+z7qm4Ut0IcoWUiIkJLKHskSCIC892MWWrCilTKgHI0SwMgqhkKhmxd6ip+ZlmO/7
+/3/85+N7OH+mK8VNrB35J5Iv57qf3LtQ5SrxNxUfBTTEa0DmUVAupi5RwYUT8Zbb
+HGQCiCDCQjCVCh2bKsK6qWBqKchUfRQp3OCqECY0GdNU0yAM69wkGGuYc8NgugU1
+zYQEeIDPDvpFuDJsByMSq6mIqsxHBce6gnwqJ1RiuEl1rvkIVlWkahBqVBoDISfh
+kOEoccQmOyRr8uGdivcX/X/OXTWFsyxThwoUBvVhqBBCICO60BAXkHIMYULoiHCQ
+HBJSzQLCCdhhgVQD1HmAbERtJhKznRb47Uigiv7TFKmpTFSrBfVO+73UDnI5RWmL
+irBjh4IgE0kli9gJANI0S1ehYiEPEEcqJclrJxTY0E0ojwdUhkVUIg3LsigyGVZM
+HTFIGLI0QxMG4T5dqLoQqqkRrCGsca5jHRkMMcZU2VV0aqDEXx1xOBgCmYqERohf
+Mh3bHySRqrAAdfd7Sme53CmuObNnJNbLlZKc9mfpFkbn/trdMo6WxUOXRtzr901O
+5s0YGtlwLXfoTFth/Mvqcd6zoTF26suHNelZxVcG1sbqc4C9uNvtLM2PHexoL3zc
+UGaU9RanP/t44/2xicHh3pMjBc393t4jo0WuieWtXeXnsqI7hg4N+JXqxdkV2/Cj
+XT2fdx5/eRp4O6/bTRW5izKepy4c3nh3Hhq/vWTFyo47aewFa2x7kPSjaOjXmxup
+Sa1lGV8vvu1aAFu3vTpBfu6tHl61efbk6LrX3vzROt/T+pz2/j73zQkHdLfMKn17
+4GrBsluDvWtr8fexPftjZ2ub49i5H7IaAtnvto/1JZeMfdq65XxsricvXpfHT2V9
+6/a7On8D0J086A==
+=/ZrD
 -----END PGP MESSAGE-----
 
 ```
@@ -67,7 +67,7 @@ And finally, I am proving ownership of the github account by posting this as a g
 
 ### My publicly-auditable identity:
 
-https://keybase.io/szarapka
+https://keybase.io/cheshire137
 
 ### From the command line:
 
@@ -75,10 +75,10 @@ Consider the [keybase command line program](https://keybase.io/docs/command_line
 
 ```bash
 # look me up
-keybase id szarapka
+keybase id cheshire137
 
 # encrypt a message to me
-keybase encrypt szarapka -m 'a secret message...'
+keybase encrypt cheshire137 -m 'a secret message...'
 
 # ...and more...
 ```

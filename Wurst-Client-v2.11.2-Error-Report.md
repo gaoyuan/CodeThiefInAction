@@ -7,7 +7,7 @@ Event type: UpdateEvent
 # Stacktrace
 ```
 java.lang.NullPointerException
-	at tk.wurst_client.utils.BuildUtils.advancedInstantBuild(BuildUtils.java:764)
+	at tk.wurst_client.utils.BuildUtils.advancedInstantBuild(BuildUtils.java:719)
 	at tk.wurst_client.mods.InstantBunkerMod.onUpdate(InstantBunkerMod.java:326)
 	at tk.wurst_client.events.EventManager.fireUpdate(EventManager.java:124)
 	at tk.wurst_client.events.EventManager.fireEvent(EventManager.java:36)
@@ -23,7 +23,7 @@ java.lang.NullPointerException
 ```
 
 # System details
-- OS: Windows 8.1 (amd64)
+- OS: Windows 7 (amd64)
 - Java version: 1.8.0_25 (Oracle Corporation)
 - Wurst version: 2.11.2 (latest: 2.11.2)
-- Timestamp: 2015.12.08-04:22:59
+- Timestamp: 2015.12.08-10:01:44
