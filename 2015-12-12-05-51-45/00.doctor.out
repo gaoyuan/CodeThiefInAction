@@ -1,0 +1,37 @@
+Please note that these warnings are just used to help the Homebrew maintainers
+with debugging if you file an issue. If everything you use Homebrew for is
+working fine: please don't worry and just ignore them. Thanks!
+
+Warning: The system curl on 10.6 and below is often incapable of supporting
+modern secure connections & will fail on fetching formulae.
+We recommend you:
+  brew install curl
+
+Warning: Unbrewed dylibs were found in /usr/local/lib.
+If you didn't put them there on purpose they could cause problems when
+building Homebrew formulae, and may need to be deleted.
+
+Unexpected dylibs:
+    /usr/local/lib/libMonoPosixHelper.dylib
+    /usr/local/lib/libSFFileMonitor.32.dylib
+    /usr/local/lib/libSFIPC.32.dylib
+    /usr/local/lib/libSFIPC.I.dylib
+    /usr/local/lib/libSFsqlite3.7.4.dylib
+    /usr/local/lib/libSFSyncEngine.I.dylib
+
+Warning: You have unlinked kegs in your Cellar
+Leaving kegs unlinked can lead to build-trouble and cause brews that depend on
+those kegs to fail to run properly once built. Run `brew link` on these:
+    ruby
+
+Warning: Some keg-only formula are linked into the Cellar.
+Linking a keg-only formula, such as gettext, into the cellar with
+`brew link <formula>` will cause other formulae to detect them during
+the `./configure` step. This may cause problems when compiling those
+other formulae.
+
+Binaries provided by keg-only formulae may override system binaries
+with other strange results.
+
+You may wish to `brew unlink` these brews:
+    perl

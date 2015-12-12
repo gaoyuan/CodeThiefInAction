@@ -1,2 +1,0 @@
-alias xcode-uuid='defaults read /Applications/Xcode.app/Contents/Info.plist DVTPlugInCompatibilityUUID'
-alias xcode-add='find ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins -name Info.plist | xargs -IFILE defaults write FILE DVTPlugInCompatibilityUUIDs -array-add'

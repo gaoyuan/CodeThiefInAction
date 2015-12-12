@@ -1,3 +1,0 @@
-$ xcode-uuid
-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-$ xcode-add xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx

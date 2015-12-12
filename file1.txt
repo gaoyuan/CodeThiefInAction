@@ -1,1 +1,0 @@
-find ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins -name Info.plist | xargs -IFILE defaults write FILE DVTPlugInCompatibilityUUIDs -array-add 上のコマンドで得たUUID
