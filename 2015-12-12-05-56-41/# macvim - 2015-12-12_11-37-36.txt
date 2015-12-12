@@ -1,0 +1,2 @@
+Homebrew build logs for macvim on OS X 10.6.8
+Build date: 2015-12-12 11:37:36

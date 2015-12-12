@@ -1,0 +1,22 @@
+HOMEBREW_VERSION: 0.9.5
+ORIGIN: https://github.com/Homebrew/homebrew.git
+HEAD: 1c34db0276fe4608bfcaa83d30195deff75fe136
+Last commit: 13 hours ago
+HOMEBREW_PREFIX: /usr/local
+HOMEBREW_REPOSITORY: /usr/local
+HOMEBREW_CELLAR: /usr/local/Cellar
+HOMEBREW_BOTTLE_DOMAIN: https://homebrew.bintray.com
+CPU: quad-core 64-bit arrandale
+OS X: 10.6.8-i386
+Xcode: 3.2.6
+CLT: N/A
+GCC-4.0: build 5494
+GCC-4.2: build 5666
+LLVM-GCC: build 2335
+Clang: 1.7 build 77
+X11: 2.3.6 => /usr/X11
+System Ruby: 1.8.7-p358
+Perl: /usr/local/bin/perl => /usr/local/Cellar/perl/5.22.0/bin/perl
+Python: /usr/local/bin/python => /usr/local/Cellar/python/2.7.11/Frameworks/Python.framework/Versions/2.7/bin/python2.7
+Ruby: /usr/bin/ruby => /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/bin/ruby
+Java: 1.6.0_65-b14-462

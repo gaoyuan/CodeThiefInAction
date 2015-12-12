@@ -1,0 +1,25 @@
+["2034"] = {robotIndex = 2034, ignoreGravity = true, ignoreContactSpace = true,
+        basic = { health = 50, attack = 20, defense = 0, },
+        activate = {delay = 0.1, location = {x = 27, y = 9},fixDirection = "left" },
+        resource = {dataDisk = {duration = 5}},
+        circleLeaveChase = {
+            [1] = {
+                target = {
+                    target = "pathCollision",
+                },
+                effect = {
+                    effect = {"attack"},
+                },
+                moveSpeed = 25, circleSpeed = 3, attackSpeed = 3,
+                enter = {x = 9, y = 2},
+                circle = {
+                    center = {x = 18, y = 7},
+                    enter = {x = -1, y = 0},
+                    exit = {x = 1, y = 0},
+                },
+                exit = {x = -12, y = -12},
+                count = 2,
+                prepareTime = 1,
+            }
+        },
+    },
