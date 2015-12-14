@@ -1,0 +1,19 @@
+<table class="green" style="width: 100%; border: 1px; padding: 1em; vertical-align: middle;">
+  <caption><strong>{{ site.data.ebuild_commands.caption | markdownify }}</strong></caption>
+  <thead>
+    <tr class="green">
+    {% for heading in site.data.ebuild_commands.head %}
+      <th>{{heading | markdownify}}</td>
+    {% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in site.data.ebuild_commands.body %}
+    <tr class="green">
+      <td class="title">{{ row.command | markdownify }}</td>
+      <td class="title">{{ row.meaning | markdownify }}</td>
+      <td class="title">{{ row.example | markdownify }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

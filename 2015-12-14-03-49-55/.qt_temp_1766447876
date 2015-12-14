@@ -1,0 +1,822 @@
+----------------------------------------------------------------------------------------------------------
+cat /etc/KaOS-release
+----------------------------------------------------------------------------------------------------------
+
+KAOS_20151121
+
+----------------------------------------------------------------------------------------------------------
+inxi -Fxz
+----------------------------------------------------------------------------------------------------------
+
+System:    Host: <HOSTNAME> Kernel: 4.2.6-1 x86_64 (64 bit gcc: 4.9.3) Desktop: KDE Plasma 5.5.0 (Qt 5.5.1)
+           Distro: KaOS rolling
+Machine:   Mobo: ASUSTeK model: K52Jc v: 1.0 Bios: American Megatrends v: K52Jc.216 date: 01/25/2011
+CPU:       Dual core Intel Core i3 M 370 (-HT-MCP-) cache: 3072 KB
+           flags: (lm nx sse sse2 sse3 sse4_1 sse4_2 ssse3 vmx) bmips: 9866
+           clock speeds: max: 2399 MHz 1: 1733 MHz 2: 2399 MHz 3: 1199 MHz 4: 1199 MHz
+Graphics:  Card-1: Intel Core Processor Integrated Graphics Controller bus-ID: 00:02.0
+           Card-2: NVIDIA GT218M [GeForce 310M] bus-ID: 01:00.0
+           Display <HOSTNAME>: X.Org 1.17.4 drivers: intel (unloaded: vesa) Resolution: 1366x768@59.99hz
+           GLX Renderer: Mesa DRI Intel Ironlake Mobile
+           GLX Version: 2.1 Mesa 11.0.6 Direct Rendering: Yes
+Audio:     Card Intel 5 Series/3400 Series High Definition Audio driver: snd_hda_intel bus-ID: 00:1b.0
+           Sound: Advanced Linux Sound Architecture v: k4.2.6-1
+Network:   Card-1: Qualcomm Atheros AR9285 Wireless Network Adapter (PCI-Express)
+           driver: ath9k bus-ID: 03:00.0
+           IF: wls1 state: down mac: <filter>
+           Card-2: JMicron JMC250 PCI Express Gigabit Ethernet Controller
+           driver: jme v: 1.0.8 ports: a100 a000 bus-ID: 04:00.5
+           IF: ens5f5 state: up speed: 100 Mbps duplex: full mac: <filter>
+Drives:    HDD Total Size: 120.0GB (7.3% used) ID-1: /dev/sda model: KINGSTON_SV300S3 size: 120.0GB
+Partition: ID-1: / size: 14G used: 6.3G (49%) fs: ext4 dev: /dev/sda2
+           ID-2: swap-1 size: 2.15GB used: 0.00GB (0%) fs: swap dev: /dev/sda5
+Sensors:   System Temperatures: cpu: 48.0C mobo: N/A gpu: 47.0
+           Fan Speeds (in rpm): cpu: N/A
+Info:      Processes: 128 Uptime: 6 min Memory: 459.0/3747.4MB Init: systemd runlevel: 5 Gcc sys: 4.9.3
+           Client: Unknown : octopi inxi: 2.2.31
+
+
+----------------------------------------------------------------------------------------------------------
+journalctl -b -p err
+----------------------------------------------------------------------------------------------------------
+
+-- Logs begin at dom 2015-12-13 22:28:26 WET, end at lun 2015-12-14 03:47:09 WET. --
+dic 14 03:40:42 <HOSTNAME> systemd[1]: NetworkManager.service: Job NetworkManager.service/start deleted to break ordering cycle starting with network.target/start
+dic 14 03:41:14 <HOSTNAME> kup-daemon[857]: Kup is not enabled, enable it from the system settings module. You can do that by running kcmshell5 kup
+dic 14 03:41:39 <HOSTNAME> pulseaudio[862]: [pulseaudio] bluez5-util.c: GetManagedObjects() failed: org.freedesktop.DBus.Error.NoReply: Did not receive a reply. Possible causes include: the remote application did not send a reply, the message bus security policy blocked the reply, the reply timeout expired, or the network connection was broken.
+
+
+----------------------------------------------------------------------------------------------------------
+cat /etc/pacman.conf
+----------------------------------------------------------------------------------------------------------
+
+#
+# /etc/pacman.conf
+#
+# See the pacman.conf(5) manpage for option and repository directives
+
+#
+# GENERAL OPTIONS
+#
+[options]
+# The following paths are commented out with their default values listed.
+# If you wish to use different paths, uncomment and update the paths.
+#RootDir     = /
+#DBPath      = /var/lib/pacman/
+#CacheDir    = /var/cache/pacman/pkg/
+#LogFile     = /var/log/pacman.log
+HoldPkg     = pacman glibc
+#XferCommand = /usr/bin/wget --passive-ftp -c -O %o %u
+#XferCommand = /usr/bin/curl -C - %u > %o
+#CleanMethod = KeepInstalled
+#UseDelta    = 0.7
+Architecture = auto
+
+# Pacman won't upgrade packages listed in IgnorePkg and members of IgnoreGroup
+#IgnorePkg   =
+#IgnoreGroup =
+
+#NoUpgrade   =
+#NoExtract   =
+
+# Misc options (all disabled by default)
+#UseSyslog
+#ShowSize
+Color
+#TotalDownload
+CheckSpace
+VerbosePkgLists
+ILoveCandy
+
+# By default, pacman accepts packages signed by keys that its local keyring
+# trusts (see pacman-key and its man page), as well as unsigned packages.
+SigLevel = Never
+LocalFileSigLevel = Never
+#RemoteFileSigLevel = Required
+
+#
+# REPOSITORIES
+#   - can be defined here or included from another file
+#   - pacman will search repositories in the order defined here
+#   - local/custom mirrors can be added here or in separate files
+#   - repositories listed first will take precedence when packages
+#     have identical names, regardless of version number
+#   - URLs will have $repo replaced by the name of the current repo
+#   - URLs will have $arch replaced by the name of the architecture
+#
+# Repository entries are of the format:
+#       [repo-name]
+#       Server = ServerName
+#       Include = IncludePath
+#
+# The header [repo-name] is crucial - it must be present and
+# uncommented to enable the repo.
+#
+
+[core]
+Include = /etc/pacman.d/mirrorlist
+
+[main]
+Include = /etc/pacman.d/mirrorlist
+
+[apps]
+Include = /etc/pacman.d/mirrorlist
+
+# An example of a custom package repository.  See the pacman manpage for
+# tips on creating your own repositories.
+#[custom]
+#Server = file:///home/custompkgs
+
+----------------------------------------------------------------------------------------------------------
+pacman -Qm
+----------------------------------------------------------------------------------------------------------
+
+
+
+----------------------------------------------------------------------------------------------------------
+cat /var/log/pacman.log
+----------------------------------------------------------------------------------------------------------
+
+[2015-12-13 17:14] [PACMAN] Running 'pacman -R --noconfirm xf86-video-vmware'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed xf86-video-vmware (13.1.0-3)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -R --noconfirm xf86-video-nouveau'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed xf86-video-nouveau (1.0.11-2)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -R --noconfirm xf86-video-ati'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed xf86-video-ati (7.6.1-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -R --noconfirm xf86-video-vmware'
+[2015-12-13 17:14] [PACMAN] Running 'pacman -R --noconfirm xf86-video-vmware'
+[2015-12-13 17:14] [PACMAN] Running 'pacman -R --noconfirm xf86-video-ati'
+[2015-12-13 17:14] [PACMAN] Running 'pacman -R --noconfirm xf86-video-vmware'
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rncs --noconfirm xf86-input-wacom'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed wacomtablet (2.9.80-1)
+[2015-12-13 17:14] [ALPM] removed xf86-input-wacom (0.31.0-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rns --noconfirm calamares keyboardctl'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM-SCRIPTLET] rm: cannot remove '/etc/systemd/system/sysinit.target.wants/keyboardctl.service': No such file or directory
+[2015-12-13 17:14] [ALPM] removed keyboardctl (0.1.6-2)
+[2015-12-13 17:14] [ALPM] removed calamares (1.97-1)
+[2015-12-13 17:14] [ALPM] removed yaml-cpp (0.5.2-3)
+[2015-12-13 17:14] [ALPM] removed boost (1.59.0-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -R --noconfirm welcome'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed welcome (3.8-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rns --noconfirm kdeos-hardware-detection'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed kdeos-hardware-detection (20150729-1)
+[2015-12-13 17:14] [ALPM] removed khd-nvidia-304xx (304.131-1)
+[2015-12-13 17:14] [ALPM] removed khd-nvidia (352.63-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -R --noconfirm init-live'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed init-live (2015.10-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm kde-l10n-ar'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed kde-l10n-ar (15.08.3-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm kde-l10n-bg'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed kde-l10n-bg (15.08.3-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm kde-l10n-bs'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed kde-l10n-bs (15.08.3-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm kde-l10n-ca'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed kde-l10n-ca (15.08.3-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm kde-l10n-ca@valencia'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed kde-l10n-ca@valencia (15.08.3-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm kde-l10n-cs'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed kde-l10n-cs (15.08.3-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm kde-l10n-da'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed kde-l10n-da (15.08.3-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm kde-l10n-de'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed kde-l10n-de (15.08.3-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm kde-l10n-el'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed kde-l10n-el (15.08.3-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm kde-l10n-en_gb'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed kde-l10n-en_gb (15.08.3-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm kde-l10n-eo'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed kde-l10n-eo (15.08.3-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm kde-l10n-et'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed kde-l10n-et (15.08.3-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm kde-l10n-eu'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed kde-l10n-eu (15.08.3-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm kde-l10n-fa'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed kde-l10n-fa (15.08.3-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm kde-l10n-fi'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed kde-l10n-fi (15.08.3-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm kde-l10n-fr'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed kde-l10n-fr (15.08.3-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm kde-l10n-ga'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed kde-l10n-ga (15.08.3-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm kde-l10n-gl'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed kde-l10n-gl (15.08.3-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm kde-l10n-he'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed kde-l10n-he (15.08.3-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm kde-l10n-hi'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed kde-l10n-hi (15.08.3-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm kde-l10n-hr'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed kde-l10n-hr (15.08.3-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm kde-l10n-hu'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed kde-l10n-hu (15.08.3-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm kde-l10n-ia'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed kde-l10n-ia (15.08.3-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm kde-l10n-id'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed kde-l10n-id (15.08.3-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm kde-l10n-is'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed kde-l10n-is (15.08.3-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm kde-l10n-it'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed kde-l10n-it (15.08.3-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm kde-l10n-ja'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed kde-l10n-ja (15.08.3-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm kde-l10n-kk'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed kde-l10n-kk (15.08.3-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm kde-l10n-km'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed kde-l10n-km (15.08.3-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm kde-l10n-ko'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed kde-l10n-ko (15.08.3-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm kde-l10n-lt'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed kde-l10n-lt (15.08.3-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm kde-l10n-lv'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed kde-l10n-lv (15.08.3-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm kde-l10n-mr'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed kde-l10n-mr (15.08.3-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm kde-l10n-nb'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed kde-l10n-nb (15.08.3-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm kde-l10n-nds'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed kde-l10n-nds (15.08.3-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm kde-l10n-nl'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed kde-l10n-nl (15.08.3-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm kde-l10n-nn'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed kde-l10n-nn (15.08.3-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm kde-l10n-pa'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed kde-l10n-pa (15.08.3-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm kde-l10n-pl'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed kde-l10n-pl (15.08.3-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm kde-l10n-pt'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed kde-l10n-pt (15.08.3-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm kde-l10n-pt_BR'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed kde-l10n-pt_BR (15.08.3-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm kde-l10n-ro'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed kde-l10n-ro (15.08.3-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm kde-l10n-ru'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed kde-l10n-ru (15.08.3-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm kde-l10n-sk'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed kde-l10n-sk (15.08.3-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm kde-l10n-sl'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed kde-l10n-sl (15.08.3-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm kde-l10n-sv'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed kde-l10n-sv (15.08.3-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm kde-l10n-tr'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed kde-l10n-tr (15.08.3-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm kde-l10n-ug'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed kde-l10n-ug (15.08.3-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm kde-l10n-uk'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed kde-l10n-uk (15.08.3-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm kde-l10n-wa'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed kde-l10n-wa (15.08.3-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm kde-l10n-zh_CN'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed kde-l10n-zh_CN (15.08.3-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm kde-l10n-zh_TW'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed kde-l10n-zh_TW (15.08.3-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm calligra-l10n-bs'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed calligra-l10n-bs (2.9.9-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm calligra-l10n-ca'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed calligra-l10n-ca (2.9.9-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm calligra-l10n-ca@valencia'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed calligra-l10n-ca@valencia (2.9.9-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm calligra-l10n-cs'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed calligra-l10n-cs (2.9.9-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm calligra-l10n-da'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed calligra-l10n-da (2.9.9-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm calligra-l10n-de'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed calligra-l10n-de (2.9.9-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm calligra-l10n-el'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed calligra-l10n-el (2.9.9-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm calligra-l10n-en_GB'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed calligra-l10n-en_GB (2.9.9-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm calligra-l10n-et'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed calligra-l10n-et (2.9.9-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm calligra-l10n-fi'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed calligra-l10n-fi (2.9.9-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm calligra-l10n-fr'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed calligra-l10n-fr (2.9.9-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm calligra-l10n-gl'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed calligra-l10n-gl (2.9.9-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm calligra-l10n-hu'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed calligra-l10n-hu (2.9.9-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm calligra-l10n-it'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed calligra-l10n-it (2.9.9-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm calligra-l10n-ja'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed calligra-l10n-ja (2.9.9-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm calligra-l10n-kk'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed calligra-l10n-kk (2.9.9-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm calligra-l10n-nb'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed calligra-l10n-nb (2.9.9-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm calligra-l10n-nl'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed calligra-l10n-nl (2.9.9-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm calligra-l10n-pl'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed calligra-l10n-pl (2.9.9-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm calligra-l10n-pt'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed calligra-l10n-pt (2.9.9-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm calligra-l10n-pt_BR'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed calligra-l10n-pt_BR (2.9.9-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm calligra-l10n-ru'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed calligra-l10n-ru (2.9.9-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm calligra-l10n-sk'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed calligra-l10n-sk (2.9.9-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm calligra-l10n-sv'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed calligra-l10n-sv (2.9.9-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm calligra-l10n-uk'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed calligra-l10n-uk (2.9.9-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm calligra-l10n-zh_CN'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed calligra-l10n-zh_CN (2.9.9-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:14] [PACMAN] Running 'pacman -Rddn --noconfirm calligra-l10n-zh_TW'
+[2015-12-13 17:14] [ALPM] transaction started
+[2015-12-13 17:14] [ALPM] removed calligra-l10n-zh_TW (2.9.9-1)
+[2015-12-13 17:14] [ALPM] transaction completed
+[2015-12-13 17:20] [PACMAN] Running 'pacman -Sy'
+[2015-12-13 17:20] [PACMAN] synchronizing package lists
+[2015-12-13 17:21] [PACMAN] Running 'pacman -Syu'
+[2015-12-13 17:21] [PACMAN] synchronizing package lists
+[2015-12-13 17:21] [PACMAN] starting full system upgrade
+[2015-12-13 17:51] [ALPM] transaction started
+[2015-12-13 17:51] [ALPM] upgraded dbus (1.10.4-1 -> 1.10.6-1)
+[2015-12-13 17:51] [ALPM] upgraded pcre (8.37-1 -> 8.38-1)
+[2015-12-13 17:51] [ALPM] upgraded e2fsprogs (1.42.13-1 -> 1.42.13-2)
+[2015-12-13 17:52] [ALPM] upgraded openssl (1.0.2.4-2 -> 1.0.2.5-2)
+[2015-12-13 17:52] [ALPM] upgraded libldap (2.4.42-2 -> 2.4.43-1)
+[2015-12-13 17:52] [ALPM] installed quota (4.02-1)
+[2015-12-13 17:52] [ALPM] upgraded python2 (2.7.10-2 -> 2.7.11-1)
+[2015-12-13 17:52] [ALPM] upgraded systemd (1:228-1 -> 1:228-2)
+[2015-12-13 17:52] [ALPM] upgraded libmariadbclient (10.1.8-2 -> 10.1.9-1)
+[2015-12-13 17:52] [ALPM] upgraded freetype2 (2.6.1-1 -> 2.6.2-1)
+[2015-12-13 17:52] [ALPM] upgraded harfbuzz (1.1.0-1 -> 1.1.2-1)
+[2015-12-13 17:52] [ALPM] upgraded mesa (11.0.5-1 -> 11.0.6-1)
+[2015-12-13 17:52] [ALPM] upgraded libgl (11.0.5-1 -> 11.0.6-1)
+[2015-12-13 17:52] [ALPM] upgraded mpfr (3.1.3.p4-1 -> 3.1.3.p5-1)
+[2015-12-13 17:52] [ALPM] upgraded accountsqt (1.14-1 -> 1.14-2)
+[2015-12-13 17:52] [ALPM] upgraded karchive (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:52] [ALPM] upgraded kjs (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:52] [ALPM] upgraded ki18n (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:53] [ALPM] upgraded gnutls (3.4.6-1 -> 3.4.7-1)
+[2015-12-13 17:53] [ALPM] upgraded libsndfile (1.0.25-9 -> 1.0.26-1)
+[2015-12-13 17:53] [ALPM] upgraded nspr (4.10.10-1 -> 4.11-1)
+[2015-12-13 17:53] [ALPM] upgraded ffmpeg (2.8.2-1 -> 2.8.3-1)
+[2015-12-13 17:53] [ALPM] upgraded kfilemetadata (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:53] [ALPM] upgraded kconfig (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:53] [ALPM] upgraded kidletime (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:53] [ALPM] upgraded kcoreaddons (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:53] [ALPM] upgraded kauth (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:53] [ALPM] upgraded kwindowsystem (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:53] [ALPM] upgraded kcrash (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:53] [ALPM] upgraded device-mapper (2.02.134-1 -> 2.02.137-1)
+[2015-12-13 17:53] [ALPM] upgraded lvm2 (2.02.134-1 -> 2.02.137-1)
+[2015-12-13 17:53] [ALPM] upgraded solid (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:53] [ALPM] upgraded kcodecs (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:53] [ALPM] upgraded kguiaddons (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:53] [ALPM] upgraded kwidgetsaddons (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:53] [ALPM] upgraded kconfigwidgets (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:53] [ALPM] upgraded kitemviews (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:53] [ALPM] upgraded kiconthemes (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:53] [ALPM] upgraded kdbusaddons (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:53] [ALPM] upgraded kservice (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:53] [ALPM] upgraded knotifications (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:53] [ALPM] upgraded kjobwidgets (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:53] [ALPM] upgraded kglobalaccel (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:53] [ALPM] upgraded kcompletion (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:54] [ALPM] upgraded sonnet (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:54] [ALPM] upgraded ktextwidgets (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:54] [ALPM] upgraded kf5-attica (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:54] [ALPM] upgraded kxmlgui (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:54] [ALPM] upgraded kbookmarks (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:54] [ALPM] upgraded curl (7.45.0-1 -> 7.46.0-1)
+[2015-12-13 17:54] [ALPM] upgraded libassuan (2.4.0-1 -> 2.4.2-1)
+[2015-12-13 17:54] [ALPM] upgraded pinentry (0.9.6-1 -> 0.9.6-2)
+[2015-12-13 17:54] [ALPM] upgraded gnupg (2.1.9-1 -> 2.1.10-1)
+[2015-12-13 17:54] [ALPM] upgraded kwallet (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:54] [ALPM] upgraded kio (5.16.0-1 -> 5.17.0-2)
+[2015-12-13 17:54] [ALPM] upgraded lmdb (0.9.15-1 -> 0.9.17-1)
+[2015-12-13 17:54] [ALPM] upgraded baloo (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:54] [ALPM] upgraded bluez-qt (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:54] [ALPM] upgraded kinit (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:54] [ALPM] upgraded kpackage (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:54] [ALPM] upgraded kdeclarative (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:54] [ALPM] upgraded kcmutils (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:54] [ALPM] upgraded kactivities (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:54] [ALPM] upgraded librsvg (2.40.11-1 -> 2.40.12-1)
+[2015-12-13 17:54] [ALPM] upgraded opus (1.1-2 -> 1.1.1-1)
+[2015-12-13 17:54] [ALPM] upgraded plasma-framework (5.16.0-1 -> 5.17.0-2)
+[2015-12-13 17:54] [ALPM] upgraded kded (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:54] [ALPM] upgraded bluedevil (5.4.3-1 -> 5.5.0-1)
+[2015-12-13 17:54] [ALPM] upgraded knewstuff (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:54] [ALPM] upgraded kwayland (5.4.3-1 -> 5.5.0-1)
+[2015-12-13 17:54] [ALPM] upgraded kdecoration (5.4.3-1 -> 5.5.0-1)
+[2015-12-13 17:54] [ALPM] upgraded kemoticons (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:54] [ALPM] upgraded kitemmodels (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:54] [ALPM] upgraded kunitconversion (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:54] [ALPM] upgraded kplotting (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:54] [ALPM] upgraded kparts (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:54] [ALPM] upgraded kdewebkit (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:55] [ALPM] upgraded kdesignerplugin (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:55] [ALPM] upgraded dhcpcd (6.9.3-1 -> 6.9.4-1)
+[2015-12-13 17:55] [ALPM] upgraded networkmanager (1.0.6-1 -> 1.0.8-1)
+[2015-12-13 17:55] [ALPM] upgraded kdelibs4support (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:55] [ALPM] installed kscreenlocker (5.5.0-1)
+[2015-12-13 17:55] [ALPM] upgraded kwin (5.4.3-1 -> 5.5.0-1)
+[2015-12-13 17:55] [ALPM] upgraded frameworkintegration (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:55] [ALPM] installed breeze-icons (5.17.0-1)
+[2015-12-13 17:56] [ALPM] upgraded breeze (5.4.3-1 -> 5.5.0-1)
+[2015-12-13 17:56] [ALPM] upgraded breeze4 (5.4.3-1 -> 5.5.0-1)
+[2015-12-13 17:56] [ALPM] upgraded threadweaver (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:56] [ALPM] upgraded kross (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:56] [ALPM] upgraded ktexteditor (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:56] [ALPM] upgraded gsl (2.0-1 -> 2.1-1)
+[2015-12-13 17:56] [ALPM] upgraded knotifyconfig (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:56] [ALPM] upgraded khtml (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:56] [ALPM] upgraded kpty (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:56] [ALPM] upgraded libkscreen (5.4.3-1 -> 5.5.0-1)
+[2015-12-13 17:56] [ALPM] upgraded libcups (2.1.0-1 -> 2.1.2-1)
+[2015-12-13 17:56] [ALPM] upgraded okular (15.07.75-1 -> 15.11.70-1)
+[2015-12-13 17:56] [ALPM] upgraded kproperty (2.96.0-4 -> 2.98.0-1)
+[2015-12-13 17:56] [ALPM] upgraded kreport (2.96.3-1 -> 2.97.0-1)
+[2015-12-13 17:57] [ALPM] upgraded kdb (2.96.0-9 -> 2.96.1-1)
+[2015-12-13 17:57] [ALPM] upgraded libetonyek (0.1.3-2 -> 0.1.5-1)
+[2015-12-13 17:57] [ALPM] upgraded krunner (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:57] [ALPM] upgraded imagemagick (6.9.2.6-1 -> 6.9.2.7-1)
+[2015-12-13 17:57] [ALPM] upgraded calligra (2.9.106-1 -> 2.9.109-1)
+[2015-12-13 17:57] [ALPM-SCRIPTLET] [0;32m Krita is no longer part of the Calligra Office Suite
+[2015-12-13 17:57] [ALPM-SCRIPTLET] [0;32m This is the beginning of the split into multiple
+[2015-12-13 17:57] [ALPM-SCRIPTLET] [0;32m standalone applications
+[2015-12-13 17:57] [ALPM-SCRIPTLET] [0;32m install Krita with pacman -S krita [0m
+[2015-12-13 17:57] [ALPM] upgraded cdrtools (3.02a01-1 -> 3.02a03-1)
+[2015-12-13 17:57] [ALPM] upgraded cups-filters (1.1.0-4 -> 1.2.0-1)
+[2015-12-13 17:57] [ALPM] upgraded libgusb (0.2.7-1 -> 0.2.8-1)
+[2015-12-13 17:58] [ALPM] warning: directory permissions differ on /var/cache/cups/
+filesystem: 770  package: 775
+[2015-12-13 17:58] [ALPM] upgraded cups (2.1.0-1 -> 2.1.2-1)
+[2015-12-13 17:58] [ALPM] upgraded gdb (7.10-2 -> 7.10.1-1)
+[2015-12-13 17:58] [ALPM] upgraded gist (4.3.0-1 -> 4.5.0-1)
+[2015-12-13 17:58] [ALPM] upgraded inxi (2.2.28-1 -> 2.2.31-1)
+[2015-12-13 17:58] [ALPM] upgraded signonqt (8.58-1 -> 8.58-2)
+[2015-12-13 17:58] [ALPM] upgraded kaccounts-integration (15.08.3-1 -> 15.08.3-2)
+[2015-12-13 17:58] [ALPM] upgraded kamoso (3.0-1 -> 3.1.0-1)
+[2015-12-13 17:58] [ALPM] installed python2-markupsafe (0.23-1)
+[2015-12-13 17:58] [ALPM] installed python2-setuptools (18.7.1-1)
+[2015-12-13 17:58] [ALPM] installed python2-jinja (2.8-1)
+[2015-12-13 17:58] [ALPM] upgraded kapidox (5.16.0-1 -> 5.17.0-2)
+[2015-12-13 17:58] [ALPM] upgraded kate (15.08.3-1 -> 15.08.3-2)
+[2015-12-13 17:58] [ALPM] upgraded kdesu (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:58] [ALPM] upgraded kde-cli-tools (5.4.3-2 -> 5.5.0-1)
+[2015-12-13 17:58] [ALPM] upgraded kde-common (15.08.3-1 -> 15.08.3-2)
+[2015-12-13 17:58] [ALPM] upgraded kde-gtk-config (5.4.3-1 -> 5.5.0-1)
+[2015-12-13 17:58] [ALPM] upgraded kdeplasma-addons (5.4.3-1 -> 5.5.0-1)
+[2015-12-13 17:58] [ALPM] upgraded kdnssd (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:59] [ALPM] upgraded kdoctools (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:59] [ALPM] installed libktorrent (1.3.84-1)
+[2015-12-13 17:59] [ALPM] upgraded kget (15.07.71-1 -> 15.07.71-2)
+[2015-12-13 17:59] [ALPM] upgraded khelpcenter (5.4.3-1 -> 5.5.0-1)
+[2015-12-13 17:59] [ALPM] upgraded kjsembed (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 17:59] [ALPM] upgraded libbsd (0.7.0-1 -> 0.8.0-1)
+[2015-12-13 17:59] [ALPM] upgraded libksysguard (5.4.3-1 -> 5.5.0-1)
+[2015-12-13 17:59] [ALPM] upgraded milou (5.4.3-1 -> 5.5.0-1)
+[2015-12-13 18:00] [ALPM] upgraded oxygen-icons5 (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 18:00] [ALPM] upgraded sddm (20151104-1 -> 20151119-1)
+[2015-12-13 18:00] [ALPM] upgraded sddm-kcm (1:5.4.3-1 -> 1:5.5.0-1)
+[2015-12-13 18:00] [ALPM] upgraded networkmanager-qt (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 18:00] [ALPM] upgraded kxmlrpcclient (1:5.16.0-1 -> 1:5.17.0-1)
+[2015-12-13 18:00] [ALPM] upgraded samba (4.3.1-1 -> 4.3.2-1)
+[2015-12-13 18:01] [ALPM] upgraded plasma-workspace (5.4.3-1 -> 5.5.0-3)
+[2015-12-13 18:01] [ALPM] upgraded khotkeys (5.4.3-1 -> 5.5.0-1)
+[2015-12-13 18:01] [ALPM] upgraded kimageformats (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 18:01] [ALPM] upgraded kinfocenter (5.4.3-2 -> 5.5.0-1)
+[2015-12-13 18:01] [ALPM] upgraded kmediaplayer (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 18:01] [ALPM] upgraded kmenuedit (5.4.3-1 -> 5.5.0-1)
+[2015-12-13 18:01] [ALPM] upgraded kpeople (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 18:01] [ALPM] upgraded kpmcore (1.2.2-1 -> 1.9.50-1)
+[2015-12-13 18:02] [ALPM] upgraded krita (2.9.93-1 -> 2.9.95-1)
+[2015-12-13 18:02] [ALPM] upgraded kscreen (5.4.3-1 -> 5.5.0-1)
+[2015-12-13 18:02] [ALPM] upgraded ksshaskpass (5.4.3-1 -> 5.5.0-1)
+[2015-12-13 18:02] [ALPM] upgraded ksysguard (5.4.3-1 -> 5.5.0-1)
+[2015-12-13 18:02] [ALPM] installed kaccounts-providers (15.08.3-1)
+[2015-12-13 18:02] [ALPM] upgraded telepathy-accounts-signon (1.0-1 -> 1.0-2)
+[2015-12-13 18:02] [ALPM] upgraded ktp-accounts-kcm (15.08.3-1 -> 15.08.3-2)
+[2015-12-13 18:02] [ALPM] upgraded libass (0.13.0-1 -> 0.13.1-1)
+[2015-12-13 18:02] [ALPM] upgraded libbluray (0.9.1-1 -> 0.9.2-1)
+[2015-12-13 18:02] [ALPM] upgraded linux-firmware (20151111-1 -> 20151127-1)
+[2015-12-13 18:02] [ALPM] upgraded man-pages (4.02-1 -> 4.03-1)
+[2015-12-13 18:03] [ALPM] upgraded midna-themes (0.9.2-1 -> 0.9.3-1)
+[2015-12-13 18:03] [ALPM] upgraded modemmanager-qt (5.16.0-1 -> 5.17.0-1)
+[2015-12-13 18:03] [ALPM] upgraded net-tools (1.60.2-1 -> 1.60.3-1)
+[2015-12-13 18:03] [ALPM] upgraded networkmanager-openconnect (1.0.2-2 -> 1.0.8-1)
+[2015-12-13 18:03] [ALPM] upgraded networkmanager-openvpn (1.0.6-2 -> 1.0.8-1)
+[2015-12-13 18:03] [ALPM] upgraded networkmanager-pptp (1.0.6-1 -> 1.0.8-1)
+[2015-12-13 18:03] [ALPM] upgraded networkmanager-vpnc (1.0.6-1 -> 1.0.8-1)
+[2015-12-13 18:03] [ALPM] upgraded oxygen (5.4.3-1 -> 5.5.0-1)
+[2015-12-13 18:03] [ALPM] upgraded partitionmanager (1:1.2.1-4 -> 1:1.9.50-1)
+[2015-12-13 18:03] [ALPM] upgraded polkit-kde-agent-1 (5.4.3-1 -> 5.5.0-1)
+[2015-12-13 18:03] [ALPM] upgraded systemsettings (5.4.3-1 -> 5.5.0-1)
+[2015-12-13 18:03] [ALPM] upgraded powerdevil (5.4.3-1 -> 5.5.0-1)
+[2015-12-13 18:04] [ALPM] upgraded plasma-desktop (5.4.3-2 -> 5.5.0-2)
+[2015-12-13 18:04] [ALPM] upgraded plasma-nm (5.4.3-1 -> 5.5.0-1)
+[2015-12-13 18:04] [ALPM] upgraded plasma-pa (5.4.3-1 -> 5.5.0-1)
+[2015-12-13 18:04] [ALPM] upgraded plasma-workspace-wallpapers (5.4.3-1 -> 5.5.0-1)
+[2015-12-13 18:04] [ALPM] upgraded signon-ui (0.17.2-1 -> 0.17.2-2)
+[2015-12-13 18:04] [ALPM] upgraded youtube-dl (2015.11.13-1 -> 2015.11.27.1-1)
+[2015-12-13 18:04] [ALPM] upgraded smplayer (15.9.0-1 -> 15.11.0-2)
+[2015-12-13 18:04] [ALPM] upgraded smtube (15.9.0-1 -> 15.11.0-1)
+[2015-12-13 18:04] [ALPM] upgraded unrar (5.3.7-1 -> 5.3.8-1)
+[2015-12-13 18:05] [ALPM] upgraded vim (7.4.899-1 -> 7.4.944-1)
+[2015-12-13 18:05] [ALPM] upgraded xfsprogs (4.2.0-1 -> 4.3.0-1)
+[2015-12-13 18:05] [ALPM] upgraded yakuake (2.9.9.5-1 -> 2.9.9.7-1)
+[2015-12-13 18:05] [ALPM] transaction completed
+[2015-12-13 18:52] [PACMAN] Running 'pacman -S --noconfirm apps/breeze-gtk core/cronie apps/firefox apps/flashplugin apps/kaffeine apps/kcron apps/keepassx apps/kodi apps/powertop main/tlp main/vlc main/acpi_call apps/qbittorrent'
+[2015-12-13 19:08] [ALPM] transaction started
+[2015-12-13 19:08] [ALPM] installed breeze-gtk (5.5.0.1-1)
+[2015-12-13 19:08] [ALPM] installed cronie (1.5.0-1)
+[2015-12-13 19:08] [ALPM] installed mime-types (9-2)
+[2015-12-13 19:08] [ALPM] installed atk (2.18.0-1)
+[2015-12-13 19:08] [ALPM] installed gtk-update-icon-cache (3.18.6-1)
+[2015-12-13 19:08] [ALPM] installed gtk2 (2.24.28-4)
+[2015-12-13 19:08] [ALPM] installed mozilla-common (1.4-3)
+[2015-12-13 19:08] [ALPM-SCRIPTLET] relogin or source /etc/profile.d/mozilla-common.sh
+[2015-12-13 19:08] [ALPM] installed startup-notification (0.12-4)
+[2015-12-13 19:08] [ALPM] installed libevent (2.0.22-1)
+[2015-12-13 19:08] [ALPM] installed firefox (42.0-1)
+[2015-12-13 19:08] [ALPM-SCRIPTLET] [0;32m To have better password integration with Plasma 5
+[2015-12-13 19:08] [ALPM-SCRIPTLET] [0;32m You can use the KDE Wallet password integration extension
+[2015-12-13 19:08] [ALPM-SCRIPTLET] [0;32m Download it from:
+[2015-12-13 19:08] [ALPM-SCRIPTLET] [0;32m http://www.andreascarpino.it/downloads/firefox-kde-wallet-2.5.xpi
+[2015-12-13 19:08] [ALPM-SCRIPTLET] [0;32m Right click the downloaded .xpi and open with Firefox [0m
+[2015-12-13 19:08] [ALPM] installed flashplugin (11.2.202.554-1)
+[2015-12-13 19:08] [ALPM] installed xine-lib (1.2.6-5)
+[2015-12-13 19:08] [ALPM] installed libdvbpsi (1.3.0-1)
+[2015-12-13 19:08] [ALPM] installed sdl_image (1.2.12-4)
+[2015-12-13 19:08] [ALPM] installed libebml (1.3.3-1)
+[2015-12-13 19:08] [ALPM] installed libmatroska (1.4.4-1)
+[2015-12-13 19:08] [ALPM] installed zvbi (0.2.35-2)
+[2015-12-13 19:08] [ALPM] installed libupnp (1.6.19-2)
+[2015-12-13 19:08] [ALPM] installed ttf-freefont (20120503-3)
+[2015-12-13 19:08] [ALPM-SCRIPTLET] Updating font cache... done.
+[2015-12-13 19:08] [ALPM] installed vlc (1:2.2.1-7)
+[2015-12-13 19:08] [ALPM-SCRIPTLET] sed: can't read /home/*/.config/vlc/vlcrc: No such file or directory
+[2015-12-13 19:08] [ALPM] installed kaffeine (1.3.1-1)
+[2015-12-13 19:08] [ALPM] installed kcron (15.08.3-1)
+[2015-12-13 19:08] [ALPM] installed keepassx (1.9.86-1)
+[2015-12-13 19:08] [ALPM] installed python-pysqlite (2.6.3-4)
+[2015-12-13 19:08] [ALPM] installed yajl (2.1.0-1)
+[2015-12-13 19:08] [ALPM] installed sdl2 (2.0.3-1)
+[2015-12-13 19:08] [ALPM] installed libdvdcss (1.3.0-1)
+[2015-12-13 19:08] [ALPM] installed libmicrohttpd (0.9.47-1)
+[2015-12-13 19:08] [ALPM] installed swig (3.0.7-1)
+[2015-12-13 19:08] [ALPM] installed ca-certificates-java (20121112+nmu2-2)
+[2015-12-13 19:08] [ALPM] installed openjdk (7u91_b01_2.6.3-1)
+[2015-12-13 19:08] [ALPM-SCRIPTLET] Warning: there was a problem reading the certificate file /etc/ssl/certs/Certinomis_-_Autorit?_Racine.pem. Message:
+[2015-12-13 19:08] [ALPM-SCRIPTLET]   /etc/ssl/certs/Certinomis_-_Autorit?_Racine.pem (No such file or directory)
+[2015-12-13 19:08] [ALPM-SCRIPTLET] Warning: there was a problem reading the certificate file /etc/ssl/certs/AC_Ra?z_Certic?mara_S.A..pem. Message:
+[2015-12-13 19:08] [ALPM-SCRIPTLET]   /etc/ssl/certs/AC_Ra?z_Certic?mara_S.A..pem (No such file or directory)
+[2015-12-13 19:08] [ALPM-SCRIPTLET] Warning: there was a problem reading the certificate file /etc/ssl/certs/NetLock_Arany_=Class_Gold=_F?tan?s?tv?ny.pem. Message:
+[2015-12-13 19:08] [ALPM-SCRIPTLET]   /etc/ssl/certs/NetLock_Arany_=Class_Gold=_F?tan?s?tv?ny.pem (No such file or directory)
+[2015-12-13 19:08] [ALPM-SCRIPTLET] Warning: there was a problem reading the certificate file /etc/ssl/certs/T?B?TAK_UEKAE_K?k_Sertifika_Hizmet_Sa?lay?c?s?_-_S?r?m_3.pem. Message:
+[2015-12-13 19:08] [ALPM-SCRIPTLET]   /etc/ssl/certs/T?B?TAK_UEKAE_K?k_Sertifika_Hizmet_Sa?lay?c?s?_-_S?r?m_3.pem (No such file or directory)
+[2015-12-13 19:08] [ALPM-SCRIPTLET] Warning: there was a problem reading the certificate file /etc/ssl/certs/EBG_Elektronik_Sertifika_Hizmet_Sa?lay?c?s?.pem. Message:
+[2015-12-13 19:08] [ALPM-SCRIPTLET]   /etc/ssl/certs/EBG_Elektronik_Sertifika_Hizmet_Sa?lay?c?s?.pem (No such file or directory)
+[2015-12-13 19:08] [ALPM-SCRIPTLET] done.
+[2015-12-13 19:08] [ALPM-SCRIPTLET] When you use a non-reparenting window manager
+[2015-12-13 19:08] [ALPM-SCRIPTLET] set _JAVA_AWT_WM_NONREPARENTING=1 in the relevant
+[2015-12-13 19:08] [ALPM-SCRIPTLET] /etc/profile.d/openjdk7.* file.
+[2015-12-13 19:08] [ALPM] installed tinyxml (2.6.2-3)
+[2015-12-13 19:08] [ALPM] installed libnfs (1.9.8-1)
+[2015-12-13 19:08] [ALPM] installed kodi (15.2-3)
+[2015-12-13 19:08] [ALPM] installed powertop (2.8-1)
+[2015-12-13 19:08] [ALPM] installed rfkill (0.5-2)
+[2015-12-13 19:08] [ALPM] installed smartmontools (6.4-1)
+[2015-12-13 19:08] [ALPM] installed tlp (0.8-2)
+[2015-12-13 19:08] [ALPM] installed linux-lts (3.10.89-1)
+[2015-12-13 19:08] [ALPM-SCRIPTLET] >>> Updating module dependencies. Please wait ...
+[2015-12-13 19:08] [ALPM-SCRIPTLET] >>> Generating initial ramdisk, using mkinitcpio.  Please wait...
+[2015-12-13 19:08] [ALPM-SCRIPTLET] ==> Building image from preset: /etc/mkinitcpio.d/linux-lts.preset: 'default'
+[2015-12-13 19:08] [ALPM-SCRIPTLET]   -> -k /boot/vmlinuz-linux-lts -c /etc/mkinitcpio.conf -g /boot/initramfs-linux-lts.img
+[2015-12-13 19:08] [ALPM-SCRIPTLET] ==> Starting build: 3.10.89-1-lts
+[2015-12-13 19:08] [ALPM-SCRIPTLET]   -> Running build hook: [base]
+[2015-12-13 19:08] [ALPM-SCRIPTLET]   -> Running build hook: [udev]
+[2015-12-13 19:08] [ALPM-SCRIPTLET]   -> Running build hook: [autodetect]
+[2015-12-13 19:08] [ALPM-SCRIPTLET]   -> Running build hook: [modconf]
+[2015-12-13 19:08] [ALPM-SCRIPTLET]   -> Running build hook: [block]
+[2015-12-13 19:08] [ALPM-SCRIPTLET]   -> Running build hook: [keyboard]
+[2015-12-13 19:08] [ALPM-SCRIPTLET]   -> Running build hook: [keymap]
+[2015-12-13 19:08] [ALPM-SCRIPTLET]   -> Running build hook: [resume]
+[2015-12-13 19:08] [ALPM-SCRIPTLET]   -> Running build hook: [filesystems]
+[2015-12-13 19:08] [ALPM-SCRIPTLET]   -> Running build hook: [fsck]
+[2015-12-13 19:08] [ALPM-SCRIPTLET] ==> Generating module dependencies
+[2015-12-13 19:08] [ALPM-SCRIPTLET] ==> Creating gzip-compressed initcpio image: /boot/initramfs-linux-lts.img
+[2015-12-13 19:08] [ALPM-SCRIPTLET] ==> Image generation successful
+[2015-12-13 19:08] [ALPM-SCRIPTLET] ==> Building image from preset: /etc/mkinitcpio.d/linux-lts.preset: 'fallback'
+[2015-12-13 19:08] [ALPM-SCRIPTLET]   -> -k /boot/vmlinuz-linux-lts -c /etc/mkinitcpio.conf -g /boot/initramfs-linux-lts-fallback.img -S autodetect
+[2015-12-13 19:08] [ALPM-SCRIPTLET] ==> Starting build: 3.10.89-1-lts
+[2015-12-13 19:08] [ALPM-SCRIPTLET]   -> Running build hook: [base]
+[2015-12-13 19:08] [ALPM-SCRIPTLET]   -> Running build hook: [udev]
+[2015-12-13 19:08] [ALPM-SCRIPTLET]   -> Running build hook: [modconf]
+[2015-12-13 19:08] [ALPM-SCRIPTLET]   -> Running build hook: [block]
+[2015-12-13 19:08] [ALPM-SCRIPTLET] ==> WARNING: Possibly missing firmware for module: aic94xx
+[2015-12-13 19:08] [ALPM-SCRIPTLET] ==> WARNING: Possibly missing firmware for module: bfa
+[2015-12-13 19:08] [ALPM-SCRIPTLET]   -> Running build hook: [keyboard]
+[2015-12-13 19:08] [ALPM-SCRIPTLET]   -> Running build hook: [keymap]
+[2015-12-13 19:08] [ALPM-SCRIPTLET]   -> Running build hook: [resume]
+[2015-12-13 19:08] [ALPM-SCRIPTLET]   -> Running build hook: [filesystems]
+[2015-12-13 19:08] [ALPM-SCRIPTLET]   -> Running build hook: [fsck]
+[2015-12-13 19:08] [ALPM-SCRIPTLET] ==> Generating module dependencies
+[2015-12-13 19:08] [ALPM-SCRIPTLET] ==> Creating gzip-compressed initcpio image: /boot/initramfs-linux-lts-fallback.img
+[2015-12-13 19:08] [ALPM-SCRIPTLET] ==> Image generation successful
+[2015-12-13 19:08] [ALPM] installed acpi_call (1.1.0-14)
+[2015-12-13 19:08] [ALPM] installed geoip-database (20151103-1)
+[2015-12-13 19:08] [ALPM] installed geoip (1.6.7-1)
+[2015-12-13 19:08] [ALPM] installed libtorrent-rasterbar (1.0.7-1)
+[2015-12-13 19:08] [ALPM] installed qbittorrent (3.3.1-1)
+[2015-12-13 19:08] [ALPM] transaction completed
+[2015-12-13 19:09] [PACMAN] Running 'pacman -S --noconfirm apps/dnscrypt-proxy'
+[2015-12-13 19:09] [ALPM] transaction started
+[2015-12-13 19:09] [ALPM] installed libsodium (1.0.6-1)
+[2015-12-13 19:09] [ALPM] installed dnscrypt-proxy (1.6.0-3)
+[2015-12-13 19:09] [ALPM] transaction completed
+[2015-12-13 19:11] [PACMAN] Running 'pacman -S --noconfirm apps/ufw-frontends'
+[2015-12-13 19:11] [ALPM] transaction started
+[2015-12-13 19:11] [ALPM] installed libglade (2.6.4-5)
+[2015-12-13 19:11] [ALPM] installed lapack (3.6.0-2)
+[2015-12-13 19:11] [ALPM] installed python2-numpy (1.10.1-1)
+[2015-12-13 19:11] [ALPM] installed pygtk (2.24.0-2)
+[2015-12-13 19:11] [ALPM] installed python2-pyinotify (0.9.6-1)
+[2015-12-13 19:11] [ALPM] installed ufw-frontends (0.3.2-1)
+[2015-12-13 19:11] [ALPM] transaction completed
+[2015-12-13 20:18] [PACMAN] Running 'pacman -S --noconfirm apps/gtk-engines apps/orion-gtk main/gtk3'
+[2015-12-13 20:19] [ALPM] transaction started
+[2015-12-13 20:19] [ALPM] installed gtk-engines (2.21.0-1)
+[2015-12-13 20:19] [ALPM] installed orion-gtk (1.5-1)
+[2015-12-13 20:19] [ALPM] installed at-spi2-core (2.18.3-1)
+[2015-12-13 20:19] [ALPM] installed at-spi2-atk (2.18.1-1)
+[2015-12-13 20:19] [ALPM] installed gtk3 (3.18.6-1)
+[2015-12-13 20:19] [ALPM] transaction completed
+[2015-12-14 00:04] [PACMAN] Running 'pacman -Syu'
+[2015-12-14 00:04] [PACMAN] synchronizing package lists
+[2015-12-14 00:04] [PACMAN] starting full system upgrade

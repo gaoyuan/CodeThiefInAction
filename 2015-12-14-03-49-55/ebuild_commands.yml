@@ -1,0 +1,12 @@
+caption: "Table 3: Commands for ebuild"
+head:
+  - Command
+  - Meaning
+  - "Example(s)"
+body:
+  - command: "`clean`"
+    meaning: "Cleans the temporary build directory for this ebuild."
+    examples: "`ebuild atom-1.3.1.ebuild clean`"
+  - command: "`build`"
+    meaning: "Builds the shit out of it"
+    example: "`ebuild atom-1.3.1.ebuild build`"
