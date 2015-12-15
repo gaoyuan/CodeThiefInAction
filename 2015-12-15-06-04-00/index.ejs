@@ -1,0 +1,54 @@
+<!doctype>
+<html>
+<head>
+	<link href='/css/vendor/bootstrap.min.css'>
+	<script src='/js/bundle.js'></script>
+</head>
+<body>
+	<header class="row">
+		<h1>Cafe Rank</h1>
+	</header>
+	<div class="row">
+		<table>
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Address</th>
+					<th>Download</th>
+					<th>Upload</th>
+					<th>&nbsp</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% for (var i = 0; i < cafes.length; i++) { %>
+					<tr>
+						<td><%= cafes[i].name %></td>
+						<td><%= cafes[i].address %></td>
+						<td><%= cafes[i].download %></td>
+						<td><%= cafes[i].upload %></td>
+						<td>
+							<form class="addSpeedTest">
+								<input type="hidden" name="id" value="cafes[i]._id">
+								<button type="submit">Add Test</button>
+							</form>
+						</td>
+					</tr>
+				<% } %>
+			</tbody>
+			<tfoot>
+				<tr>
+					<form id="new-cafe">
+						<td><input type="text" class="form-control" placeholder="Name"></td>
+						<td><input type="text" class="form-control" placeholder="Address"></td>
+						<td>&nbsp</td>
+						<td>&nbsp</td>
+						<td><button>Add Cafe</button></td>
+					</form>
+				</tr>
+			</tfoot>
+		</table>
+	</div>
+	<footer class="row">
+	</footer>
+</body>
+</html>
